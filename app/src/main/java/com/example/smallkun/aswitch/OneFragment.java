@@ -33,15 +33,16 @@ public class OneFragment extends Fragment {
         final Button openbtn = (Button)view.findViewById(R.id.buttonopen);
         final Spinner spinner1 = (Spinner)view.findViewById(R.id.spinnerwendu);
         final Spinner spinner2 = (Spinner)view.findViewById(R.id.spinnerfengsu);
-        Button confirmbtn = (Button)view.findViewById(R.id.buttonconfirm);
+        final Button confirmbtn = (Button)view.findViewById(R.id.buttonconfirm);
         final RadioGroup mode = (RadioGroup)view.findViewById(R.id.radioGroup);
         final TextView wendu = (TextView)view.findViewById(R.id.textViewwendu);
         final TextView moshi = (TextView)view.findViewById(R.id.textViewmode);
+        final TextView fengsu = (TextView)view.findViewById(R.id.textViewspeed);
 
         //温度设置
         final List<String> datas = new ArrayList<>();
         for (int i = 0; i < 13; i++) {
-            datas.add(16 + i+"C");
+            datas.add(16 + i+"℃");
         }
         //适配器
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,datas);
@@ -65,8 +66,9 @@ public class OneFragment extends Fragment {
 
                 wendu.setText(spinner1.getSelectedItem().toString());
                 moshi.setText(b.getText());
+                fengsu.setText(spinner2.getSelectedItem().toString());
 
-                String text = spinner1.getSelectedItem().toString() + "  " + spinner2.getSelectedItem().toString()+"  ";
+                String text = spinner1.getSelectedItem().toString() + "  " + spinner2.getSelectedItem().toString()+"  "+b.getText().toString();
                 Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
             }
         });
@@ -77,9 +79,13 @@ public class OneFragment extends Fragment {
         openbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (openbtn.getText()=="on")
-                    openbtn.setText("off");
-                else openbtn.setText("on");
+                if (openbtn.getText()=="on") {
+                    confirmbtn.setEnabled(false);
+                    openbtn.setText("off");}
+                else {
+                    confirmbtn.setEnabled(true);
+                    openbtn.setText("on");
+                }
             }
         });
         return view;
