@@ -9,7 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
+
+
 
 public  class MainActivity extends AppCompatActivity {
 
@@ -21,14 +24,15 @@ public  class MainActivity extends AppCompatActivity {
     private TabLayout.Tab three;
     private TabLayout.Tab four;
 
+
+
     MenuItem M1;
-    MenuItem M2;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_main,menu);
         M1=menu.findItem(R.id.add);
-        M2=menu.findItem(R.id.delete);
         return true;
     }
 
@@ -36,10 +40,8 @@ public  class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
             case R.id.add:
-                Toast.makeText(this,"You click add!",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.delete:
-                Toast.makeText(this,"You click delete!",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, Main_weather.class);
+                startActivity(intent);
                 break;
             default:
                 break;
@@ -52,6 +54,7 @@ public  class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+
 
     }
 
@@ -70,6 +73,8 @@ public  class MainActivity extends AppCompatActivity {
                         if (position == 1) {
                             return new TwoFragment();
                         }
+
+
                         if(position == 2){
                             return new ThreeFragment();
                         }

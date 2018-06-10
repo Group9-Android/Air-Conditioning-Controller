@@ -28,8 +28,6 @@ public class ThreeFragment extends Fragment {
             }
         });
         return view;
-
-
     }
 
     @Override

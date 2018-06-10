@@ -1,6 +1,6 @@
 package com.example.smallkun.aswitch;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,14 +35,21 @@ public class OneFragment extends Fragment {
         final Spinner spinner2 = (Spinner)view.findViewById(R.id.spinnerfengsu);
         final Button confirmbtn = (Button)view.findViewById(R.id.buttonconfirm);
         final RadioGroup mode = (RadioGroup)view.findViewById(R.id.radioGroup);
-        final TextView wendu = (TextView)view.findViewById(R.id.textViewwendu);
+
+        //final TextView wendu = (TextView)view.findViewById(R.id.textViewwendu);
+
         final TextView moshi = (TextView)view.findViewById(R.id.textViewmode);
         final TextView fengsu = (TextView)view.findViewById(R.id.textViewspeed);
+
+        final GradientProgressBar gradientProgressBar = (GradientProgressBar)view.findViewById(R.id.progress_bar);
+
+        gradientProgressBar.setPercent(16);
 
         //温度设置
         final List<String> datas = new ArrayList<>();
         for (int i = 0; i < 13; i++) {
-            datas.add(16 + i+"℃");
+            String s = String.valueOf(i+16);
+            datas.add(s);
         }
         //适配器
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,datas);
@@ -64,7 +71,10 @@ public class OneFragment extends Fragment {
                 int selected = mode.getCheckedRadioButtonId();
                 RadioButton b = getView().findViewById(selected);
 
-                wendu.setText(spinner1.getSelectedItem().toString());
+                //wendu.setText(spinner1.getSelectedItem().toString());
+                int i = Integer.parseInt(spinner1.getSelectedItem().toString());
+                gradientProgressBar.setPercent(i);
+
                 moshi.setText(b.getText());
                 fengsu.setText(spinner2.getSelectedItem().toString());
 

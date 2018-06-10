@@ -3,14 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/add"
-        android:title="add"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/delete"
-        android:title="delete"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="never"/>
-
+        android:title="天气"
+        android:icon="@mipmap/weather_icon"
+        app:showAsAction="always"/>
 
 </menu>
