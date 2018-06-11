@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,16 +14,17 @@ import android.view.View;
 import android.widget.Button;
 import android.support.v7.widget.Toolbar;
 
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
-public  class MainActivity extends AppCompatActivity {
 
-    private TabLayout mTablayout;
-    private ViewPager mViewPager;
+public  class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
 
-    private TabLayout.Tab one;
-    private TabLayout.Tab two;
-    private TabLayout.Tab three;
-    private TabLayout.Tab four;
+    private BottomNavigationBar mBottomNavigationBar;
+    private OneFragment mFragmentOne;
+    private TwoFragment mFragmentTwo;
+    private ThreeFragment mFragmentThree;
+    private FourFragment mFragmentFour;
 
     private Toolbar toolbar;
 
@@ -52,57 +54,83 @@ public  class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mBottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
 
+
+
+//        设置底部导航栏显示模式
+        mBottomNavigationBar.setMode(BottomNavigationBar.MODE_SHIFTING);
+
+        mBottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
+//设置底部导航栏颜色
+        mBottomNavigationBar.setBarBackgroundColor(R.color.blue);//set background color for navigation bar
+        mBottomNavigationBar.setInActiveColor(R.color.white);//unSelected icon color
+        mBottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.icon_one, R.string.设备控制).setActiveColorResource(R.color.green))
+                .addItem(new BottomNavigationItem(R.drawable.icon_two, R.string.情景模式).setActiveColorResource(R.color.orange))
+                .addItem(new BottomNavigationItem(R.drawable.icon_three, R.string.设备添加).setActiveColorResource(R.color.lime))
+                .addItem(new BottomNavigationItem(R.drawable.icon_four, R.string.用户信息))
+                .setFirstSelectedPosition(0)
+                .initialise();
+
+        mBottomNavigationBar.setTabSelectedListener(MainActivity.this);
+        setDefaultFragment();
+    }
+
+    /**
+     * set the default fragment
+     */
+    private void setDefaultFragment() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        mFragmentOne = new OneFragment();
+        transaction.replace(R.id.ll_content, mFragmentOne).commit();
+    }
+
+    @Override
+    public void onTabSelected(int position) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        switch (position) {
+            case 0:
+                if (mFragmentOne == null) {
+                    mFragmentOne = new OneFragment();
+                }
+                transaction.replace(R.id.ll_content, mFragmentOne);
+                break;
+            case 1:
+                if (mFragmentTwo == null) {
+                    mFragmentTwo = new TwoFragment();
+                }
+                transaction.replace(R.id.ll_content, mFragmentTwo);
+                break;
+            case 2:
+                if (mFragmentThree == null) {
+                    mFragmentThree = new ThreeFragment();
+                }
+                transaction.replace(R.id.ll_content, mFragmentThree);
+                break;
+            case 3:
+                if (mFragmentFour == null) {
+                    mFragmentFour = new FourFragment();
+                }
+                transaction.replace(R.id.ll_content, mFragmentFour);
+                break;
+            default:
+                if (mFragmentOne == null) {
+                    mFragmentOne = new OneFragment();
+                }
+                transaction.replace(R.id.ll_content, mFragmentOne);
+                break;
+        }
+        transaction.commit();
 
     }
 
-    private void initViews() {
+    @Override
+    public void onTabUnselected(int position) {
 
-        mTablayout= (TabLayout) findViewById(R.id.tabLayout);
-        mViewPager= (ViewPager) findViewById(R.id.viewPager);
+    }
 
-        mViewPager.setAdapter(
-                new FragmentPagerAdapter(getSupportFragmentManager()) {
-
-                    private String[] mTitles = new String[]{"设备控制", "情景设置","设备添加","用户信息"};
-
-                    @Override
-                    public Fragment getItem(int position) {
-                        if (position == 1) {
-                            return new TwoFragment();
-                        }
-
-
-                        if(position == 2){
-                            return new ThreeFragment();
-                        }
-                        if(position == 3){
-                            return new FourFragment();
-                        }
-                        return new OneFragment();
-                    }
-
-                    @Override
-                    public int getCount() {
-                        return mTitles.length;
-                    }
-
-                    @Override
-                    public CharSequence getPageTitle(int position) {
-                        return mTitles[position];
-                    }
-
-                });
-
-        mTablayout.setupWithViewPager(mViewPager);
-
-        one = mTablayout.getTabAt(0);
-        two = mTablayout.getTabAt(1);
-        three = mTablayout.getTabAt(2);
-        four = mTablayout.getTabAt( 3);
+    @Override
+    public void onTabReselected(int position) {
 
     }
 }

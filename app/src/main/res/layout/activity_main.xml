@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -20,25 +21,24 @@
             android:layout_gravity="center"/>
     </android.support.v7.widget.Toolbar>
 
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="none">
-    </android.support.v4.view.ViewPager>
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:text="Hello World!"></LinearLayout>
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:id="@+id/bottom_navigation_bar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        app:tabGravity="fill"
-        app:tabIndicatorHeight="1dp"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="#FF4081"
-        app:tabTextColor="#000">
-    </android.support.design.widget.TabLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
 
-</LinearLayout>
+    </com.ashokvarma.bottomnavigation.BottomNavigationBar>
+
+
+
+
+
+
+</RelativeLayout>
