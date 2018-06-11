@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
+import android.support.v7.widget.Toolbar;
 
 
 public  class MainActivity extends AppCompatActivity {
@@ -24,15 +24,14 @@ public  class MainActivity extends AppCompatActivity {
     private TabLayout.Tab three;
     private TabLayout.Tab four;
 
+    private Toolbar toolbar;
 
 
-    MenuItem M1;
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_main,menu);
-        M1=menu.findItem(R.id.add);
         return true;
     }
 
@@ -54,6 +53,8 @@ public  class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
     }

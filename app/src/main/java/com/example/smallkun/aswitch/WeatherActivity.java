@@ -70,6 +70,7 @@ public class WeatherActivity extends AppCompatActivity {
         comfortText = (TextView)findViewById(R.id.comfort_text);
         carWashText = (TextView)findViewById(R.id.car_wash_text);
         sportText = (TextView)findViewById(R.id.sport_text);
+
         bingPicImg = (ImageView)findViewById(R.id.bing_pic_img);
         swipeRefresh = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeColors(R.color.colorPrimary);
@@ -84,7 +85,8 @@ public class WeatherActivity extends AppCompatActivity {
              Glide.with(this).load(bingPic).into(bingPicImg);
         } else {
             loadBingPic();
-        }
+       }
+
         if (weatherString != null){
             Weather weather = Utility.handleWeatherResponse(weatherString);
             mWeatherId = weather.basic.weatherId;
@@ -167,10 +169,10 @@ public class WeatherActivity extends AppCompatActivity {
                 editor.apply();
                 runOnUiThread(new Runnable() {
                     @Override
-                    public void run() {
-                        Glide.with(WeatherActivity.this).load(bingPic).into(bingPicImg);
+                   public void run() {
+                       Glide.with(WeatherActivity.this).load(bingPic).into(bingPicImg);
                     }
-                });
+               });
 
             }
         });
