@@ -29,6 +29,7 @@ public class OneFragment extends Fragment {
     public int wd=0;
     public int fs=0;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,8 +51,10 @@ public class OneFragment extends Fragment {
 
         final GradientProgressBar gradientProgressBar = (GradientProgressBar)view.findViewById(R.id.progress_bar);
 
-        gradientProgressBar.setPercent(16);
 
+
+
+        gradientProgressBar.setPercent(16);
 
         sbwendu.setMax(25);
         sbwendu.setProgress(16);
@@ -73,7 +76,7 @@ public class OneFragment extends Fragment {
             }
         });
 
-        sbfengsu.setMax(5);
+        sbfengsu.setMax(3);
         sbfengsu.setProgress(0);
         sbfengsu.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -131,6 +134,7 @@ public class OneFragment extends Fragment {
                 Start fragment = new Start();
                 fragmentTransaction.replace(R.id.ll_content, fragment);
                 fragmentTransaction.commit();
+
 
             }
         });

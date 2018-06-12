@@ -116,7 +116,7 @@ public class WeatherActivity extends AppCompatActivity {
 
 
     public void requestWeather(final String weatherId){
-        String weatherUrl = "http://guolin.tech/api/weather?cityid="+weatherId+"&key=bc0418b57b2d4918819d3974ac1285d9";
+        String weatherUrl = "http://guolin.tech/api/weather?cityid="+weatherId+"&key=dac5364d838546a1b5c16f987d2a1d4c";
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -192,7 +192,7 @@ public class WeatherActivity extends AppCompatActivity {
             View view = LayoutInflater.from(this).inflate(R.layout.forecast_item, forecastLayout,false);
             TextView dataText = (TextView)view.findViewById(R.id.date_text);
             TextView infoText = (TextView)view.findViewById(R.id.info_text);
-           // TextView maxText = (TextView)view.findViewById(R.id.max_text);
+            //TextView maxText = (TextView)view.findViewById(R.id.max_text);
             //TextView minText = (TextView)view.findViewById(R.id.min_text);
             dataText.setText(forecast.date);
             infoText.setText(forecast.more.info);

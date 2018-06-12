@@ -33,18 +33,21 @@ public class Start extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.start,container,false);
-        Button button = (Button)view.findViewById(R.id.button);
+        final Button button = (Button)view.findViewById(R.id.button);
         GradientProgressBar gradientProgressBar = (GradientProgressBar)view.findViewById(R.id.progress_bar);
         gradientProgressBar.setPercent(16);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                button.setEnabled(false);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 OneFragment fragment = new OneFragment();
-                fragmentTransaction.replace(R.id.ll_content,fragment);
-                fragmentTransaction.commit();
+                fragmentTransaction.replace(R.id.ll_content,fragment).commit();
+
             }
         });
+
+
 
 
         return view;
