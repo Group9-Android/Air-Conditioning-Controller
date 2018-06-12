@@ -21,7 +21,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 public  class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
 
     private BottomNavigationBar mBottomNavigationBar;
-    private OneFragment mFragmentOne;
+    private Start mFragmentOne;
     private TwoFragment mFragmentTwo;
     private ThreeFragment mFragmentThree;
     private FourFragment mFragmentFour;
@@ -81,7 +81,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
      */
     private void setDefaultFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        mFragmentOne = new OneFragment();
+        mFragmentOne = new Start();
         transaction.replace(R.id.ll_content, mFragmentOne).commit();
     }
 
@@ -91,7 +91,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
         switch (position) {
             case 0:
                 if (mFragmentOne == null) {
-                    mFragmentOne = new OneFragment();
+                    mFragmentOne = new Start();
                 }
                 transaction.replace(R.id.ll_content, mFragmentOne);
                 break;
@@ -115,7 +115,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                 break;
             default:
                 if (mFragmentOne == null) {
-                    mFragmentOne = new OneFragment();
+                    mFragmentOne = new Start();
                 }
                 transaction.replace(R.id.ll_content, mFragmentOne);
                 break;

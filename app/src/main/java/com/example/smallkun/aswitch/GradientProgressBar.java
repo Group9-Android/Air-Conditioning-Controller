@@ -26,10 +26,12 @@ public class GradientProgressBar extends View {
     /*绘制文字的画笔*/
     private Paint textPaint;
     /*百分比*/
-    private int percent = 0;
+    private int percent;
     /*渐变圆周颜色数组*/
     private int[] gradientColorArray = new int[]{Color.GREEN, Color.parseColor("#fe751a"), Color.parseColor("#13be23"), Color.GREEN};
     private Paint gradientCirclePaint;
+
+    private int weather=3;
 
     public GradientProgressBar(Context context) {
         super(context);
@@ -114,9 +116,9 @@ public class GradientProgressBar extends View {
         }
 
         //4.绘制文字
-        float textWidth = textPaint.measureText(percent + "℃");
+        float textWidth = textPaint.measureText(weather + "℃");
         int textHeight = (int) (Math.ceil(textPaint.getFontMetrics().descent - textPaint.getFontMetrics().ascent) + 2);
-        canvas.drawText(percent + "℃", centerX - textWidth / 2, centerX + textHeight / 4, textPaint);
+        canvas.drawText(weather + "℃", centerX - textWidth / 2, centerX + textHeight / 4, textPaint);
     }
 
     /**
@@ -125,13 +127,14 @@ public class GradientProgressBar extends View {
      * @param percent
      */
     public void setPercent(int percent) {
-        if (percent < 0) {
-            percent = 0;
-        } else if (percent > 100) {
-            percent = 100;
+        if (percent < 3) {
+            percent = 3;
+        } else if (percent > 28) {
+            percent = 28;
         }
+        this.weather = percent;
 
-        this.percent = percent;
+        this.percent = 4*(percent-3);
         invalidate();
     }
 }

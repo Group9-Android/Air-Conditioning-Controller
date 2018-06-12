@@ -4,6 +4,7 @@ package com.example.smallkun.aswitch;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class OneFragment extends Fragment {
 
-    public int wd=16;
+    public int wd=0;
     public int fs=0;
 
     @Nullable
@@ -52,8 +53,8 @@ public class OneFragment extends Fragment {
         gradientProgressBar.setPercent(16);
 
 
-        sbwendu.setMax(13);
-        sbwendu.setProgress(0);
+        sbwendu.setMax(25);
+        sbwendu.setProgress(16);
         sbwendu.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -67,8 +68,8 @@ public class OneFragment extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                tempwendu.setText((seekBar.getProgress()+16)+"℃");
-                wd = seekBar.getProgress()+16;
+                tempwendu.setText((seekBar.getProgress()+3)+"℃");
+                wd = seekBar.getProgress()+3;
             }
         });
 
@@ -121,17 +122,16 @@ public class OneFragment extends Fragment {
 
 
 
+        confirmbtn.setEnabled(true);
         //设置电源按钮点击事件
         openbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (openbtn.getText()=="on") {
-                    confirmbtn.setEnabled(false);
-                    openbtn.setText("off");}
-                else {
-                    confirmbtn.setEnabled(true);
-                    openbtn.setText("on");
-                }
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                Start fragment = new Start();
+                fragmentTransaction.replace(R.id.ll_content, fragment);
+                fragmentTransaction.commit();
+
             }
         });
         return view;
