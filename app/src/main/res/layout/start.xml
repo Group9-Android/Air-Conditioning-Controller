@@ -6,6 +6,11 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <com.example.smallkun.aswitch.GradientProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="337dp"
+        android:layout_height="248dp" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
