@@ -28,7 +28,7 @@ public class Profile_n extends Activity implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
+        setContentView(R.layout.profile_n);
         btnDate = (Button) findViewById(R.id.btnDatePick);
         btnTime = (Button) findViewById(R.id.btnTimePick);
         tvDate = (TextView) findViewById(R.id.tv_date);

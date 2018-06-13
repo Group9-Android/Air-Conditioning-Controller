@@ -16,14 +16,35 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="top"
+            android:gravity="center"
             android:orientation="vertical">
 
-            <com.example.smallkun.aswitch.GradientProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="337dp"
-                android:layout_height="248dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    />
+
+                <com.example.smallkun.aswitch.GradientProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="337dp"
+                    android:layout_height="248dp"
+                    android:layout_gravity="center" />
+
+                <Button
+                    android:id="@+id/buttonopen"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="25dp"
+                    android:drawableBottom="@drawable/ic_close" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -60,7 +81,6 @@
 
 
         </LinearLayout>
-
 
 
     </LinearLayout>
@@ -176,13 +196,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:id="@+id/buttonopen"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:drawableBottom="@drawable/ic_close"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </LinearLayout>
 
