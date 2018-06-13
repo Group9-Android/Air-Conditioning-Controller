@@ -25,28 +25,19 @@ public class TwoFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_two,container,false);
     }
 
-    private CardView cardView;
+    private CardView cardView1,cardView2,cardView3,cardView4;
 
-    private String[] data = {
-            "回家",
-            "睡眠",
-            "item",
-            "item",
-            "item"
-    };
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Activity activity = (MainActivity)getActivity();
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1,data);
-//        ListView listview = (ListView)view.findViewById(R.id.list_view);
-//        View footerView = ((LayoutInflater)activity.getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_footer, null, false);
-//        listview.addFooterView(footerView);
-//        listview.setAdapter(adapter);
-
-        cardView = (CardView) view.findViewById(R.id.cardView);
+        cardView1 = (CardView) view.findViewById(R.id.cardView);
+        cardView2 = (CardView) view.findViewById(R.id.cardView2);
+        cardView3 = (CardView) view.findViewById(R.id.cardView3);
+        cardView4 = (CardView) view.findViewById(R.id.cardView4);
 
 
     }
