@@ -73,6 +73,8 @@ public class OneFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 tempwendu.setText((seekBar.getProgress()+3)+"℃");
                 wd = seekBar.getProgress()+3;
+                confirmbtn.setEnabled(true);
+
             }
         });
 
@@ -105,15 +107,16 @@ public class OneFragment extends Fragment {
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, dat);
         spinnermode.setAdapter(adapter2);
 
-        //设置确认按钮点击事件
+
+        //设置确认按钮点击事件（温度获取问题？）
         confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //wendu.setText(spinner1.getSelectedItem().toString());
                 //int i = Integer.parseInt(  );
-                gradientProgressBar.setPercent(wd);
 
+                gradientProgressBar.setPercent(wd);
                 fengsu.setText(fs+"档");
 
                 moshi.setText(spinnermode.getSelectedItem().toString());
@@ -125,7 +128,7 @@ public class OneFragment extends Fragment {
 
 
 
-        confirmbtn.setEnabled(true);
+
         //设置电源按钮点击事件
         openbtn.setOnClickListener(new View.OnClickListener() {
             @Override

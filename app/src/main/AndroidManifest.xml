@@ -24,6 +24,9 @@
         <activity android:name=".Main2Activity"></activity>
         <activity android:name=".Profile_m"></activity>
         <activity android:name=".Profile_n"></activity>
+        <activity android:name=".Profile_o"></activity>
+        <activity android:name=".Profile_p"></activity>
+
 
 
         

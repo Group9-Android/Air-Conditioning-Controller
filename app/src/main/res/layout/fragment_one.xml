@@ -196,6 +196,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
+<<<<<<< HEAD
+=======
+            <Button
+                android:id="@+id/buttonopen"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@drawable/ic_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+>>>>>>> 78adfbac3a4412cd37549c23ed3e512e07fb4fd9
 
         </LinearLayout>
 
