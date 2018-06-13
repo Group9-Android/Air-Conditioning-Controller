@@ -1,6 +1,7 @@
 package com.example.smallkun.aswitch;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,29 +26,50 @@ public class TwoFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_two,container,false);
     }
 
-    private CardView cardView;
+    private CardView cardView1,cardView2,cardView3,cardView4;
 
-    private String[] data = {
-            "回家",
-            "睡眠",
-            "item",
-            "item",
-            "item"
-    };
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Activity activity = (MainActivity)getActivity();
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1,data);
-//        ListView listview = (ListView)view.findViewById(R.id.list_view);
-//        View footerView = ((LayoutInflater)activity.getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_footer, null, false);
-//        listview.addFooterView(footerView);
-//        listview.setAdapter(adapter);
+        cardView1 = (CardView) view.findViewById(R.id.cardView);
+        cardView2 = (CardView) view.findViewById(R.id.cardView2);
+        cardView3 = (CardView) view.findViewById(R.id.cardView3);
+        cardView4 = (CardView) view.findViewById(R.id.cardView4);
 
-        cardView = (CardView) view.findViewById(R.id.cardView);
+        cardView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Profile_m.class);
+                startActivity(intent);
+            }
+        });
 
+        cardView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Profile_n.class);
+                startActivity(intent);
+            }
+        });
 
+        cardView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Profile_o.class);
+                startActivity(intent);
+            }
+        });
+
+        cardView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Profile_p.class);
+                startActivity(intent);
+            }
+        });
     }
 }
