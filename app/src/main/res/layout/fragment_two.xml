@@ -39,15 +39,17 @@
                     android:text="回家"
                     android:textSize="25dp" />
 
-                <SeekBar
-                    android:id="@+id/seekBar"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="60dp"
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:switchMinWidth="20dp"
+                    android:textOn="  "
+                    android:textOff="  "
+                    android:thumb="@drawable/thumb"
+                    android:track="@drawable/track"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:max="1"
-                    android:progress="0" />
+                    android:layout_margin="20dp"/>
 
             </LinearLayout>
 
@@ -86,15 +88,17 @@
                     android:text="睡眠"
                     android:textSize="25dp" />
 
-                <SeekBar
-                    android:id="@+id/seekBar2"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="60dp"
+                <Switch
+                    android:id="@+id/switch2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:switchMinWidth="20dp"
+                    android:textOn="  "
+                    android:textOff="  "
+                    android:thumb="@drawable/thumb"
+                    android:track="@drawable/track"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:max="1"
-                    android:progress="0" />
+                    android:layout_margin="20dp"/>
 
             </LinearLayout>
 
@@ -133,15 +137,17 @@
                     android:text="运动"
                     android:textSize="25dp" />
 
-                <SeekBar
-                    android:id="@+id/seekBar3"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="60dp"
+                <Switch
+                    android:id="@+id/switch3"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:switchMinWidth="20dp"
+                    android:textOn="  "
+                    android:textOff="  "
+                    android:thumb="@drawable/thumb"
+                    android:track="@drawable/track"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:max="1"
-                    android:progress="0" />
+                    android:layout_margin="20dp"/>
 
             </LinearLayout>
 
@@ -180,15 +186,17 @@
                     android:text="离家"
                     android:textSize="25dp" />
 
-                <SeekBar
-                    android:id="@+id/seekBar4"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="60dp"
+                <Switch
+                    android:id="@+id/switch4"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:switchMinWidth="20dp"
+                    android:textOn="  "
+                    android:textOff="  "
+                    android:thumb="@drawable/thumb"
+                    android:track="@drawable/track"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:max="1"
-                    android:progress="0" />
+                    android:layout_margin="20dp"/>
 
             </LinearLayout>
 
