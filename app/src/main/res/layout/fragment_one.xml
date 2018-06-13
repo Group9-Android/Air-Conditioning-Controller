@@ -180,7 +180,7 @@
                 android:id="@+id/buttonopen"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:drawableBottom="@drawable/ic_close"
+                android:background="@drawable/ic_close"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

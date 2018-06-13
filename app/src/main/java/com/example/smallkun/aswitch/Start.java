@@ -34,6 +34,7 @@ public class Start extends Fragment {
 
         View view=inflater.inflate(R.layout.start,container,false);
         final Button button = (Button)view.findViewById(R.id.button);
+        
         GradientProgressBar gradientProgressBar = (GradientProgressBar)view.findViewById(R.id.progress_bar);
         gradientProgressBar.setPercent(16);
         button.setOnClickListener(new View.OnClickListener() {

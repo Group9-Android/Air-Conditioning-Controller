@@ -10,14 +10,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextPaint;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
-import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -31,7 +33,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private NavigationView navigationView;
-    public boolean is_open=false;
+
 
 
 
@@ -71,6 +73,14 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
         mBottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         navigationView = (NavigationView)findViewById(R.id.nav_view);
+
+        TextView textView = (TextView)findViewById(R.id.title);
+        //设置标题加粗
+        TextPaint paint = textView.getPaint();
+        paint.setFakeBoldText(true);
+
+        //给toolbar标题栏设置颜色
+        toolbar.setBackgroundColor(getResources().getColor(R.color.blue));
 
         //为了显示隐藏菜单nav_menu的item图标，传入一个null参数
         navigationView.setItemIconTintList(null);
