@@ -99,7 +99,7 @@ public class Profile_p extends Activity implements View.OnClickListener{
                         tvDate.setText(year+" "+month+" "+day);
                         pd1= true;
                     }
-                }, 2018, 2, 12);
+                }, 2018, 2, 15);
                 datePicker.show();
                 break;
             case R.id.btnTimePick:

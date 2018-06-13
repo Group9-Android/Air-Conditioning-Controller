@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,6 @@ public class TwoFragment extends Fragment {
         scenes.add(new scene("睡眠", R.drawable.ic_close) );
         scenes.add(new scene("运动", R.drawable.ic_close) );
         scenes.add(new scene("离家", R.drawable.ic_close) );
-
     }
 
 
@@ -57,7 +57,31 @@ public class TwoFragment extends Fragment {
         RVAdapter adapter = new RVAdapter(scenes);
         rew.setAdapter(adapter);
 
+        adapter.setOnItemClickListener(new RVAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                switch (position){
+                    case 0:
+                        Intent intent = new Intent(getActivity(), Profile_m.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Intent intent1 = new Intent(getActivity(), Profile_n.class);
+                        startActivity(intent1);
+                        break;
+                    case 2:
+                        Intent intent2 = new Intent(getActivity(), Profile_o.class);
+                        startActivity(intent2);
+                        break;
+                    case 3:
+                        Intent intent3 = new Intent(getActivity(), Profile_p.class);
+                        startActivity(intent3);
+                        break;
+                }
 
+
+            }
+        });
 //        cardView1 = (CardView) view.findViewById(R.id.cardView);
 //        cardView2 = (CardView) view.findViewById(R.id.cardView2);
 //        cardView3 = (CardView) view.findViewById(R.id.cardView3);

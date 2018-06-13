@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:text="回家模式"
+            android:text="睡眠模式"
             android:textSize="24sp"
             android:textColor="#000000" />
 
