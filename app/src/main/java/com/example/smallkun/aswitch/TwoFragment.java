@@ -1,6 +1,7 @@
 package com.example.smallkun.aswitch;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,36 @@ public class TwoFragment extends Fragment {
         cardView3 = (CardView) view.findViewById(R.id.cardView3);
         cardView4 = (CardView) view.findViewById(R.id.cardView4);
 
+        cardView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Profile_m.class);
+                startActivity(intent);
+            }
+        });
 
+        cardView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Profile_n.class);
+                startActivity(intent);
+            }
+        });
+
+        cardView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Profile_o.class);
+                startActivity(intent);
+            }
+        });
+
+        cardView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Profile_p.class);
+                startActivity(intent);
+            }
+        });
     }
 }
