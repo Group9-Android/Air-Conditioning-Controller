@@ -18,6 +18,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 /**
@@ -63,19 +65,19 @@ public class TwoFragment extends Fragment {
                 switch (position){
                     case 0:
                         Intent intent = new Intent(getActivity(), Profile_m.class);
-                        startActivity(intent);
+                        startActivityForResult(intent,1);
                         break;
                     case 1:
                         Intent intent1 = new Intent(getActivity(), Profile_n.class);
-                        startActivity(intent1);
+                        startActivityForResult(intent1,2);
                         break;
                     case 2:
                         Intent intent2 = new Intent(getActivity(), Profile_o.class);
-                        startActivity(intent2);
+                        startActivityForResult(intent2,3);
                         break;
                     case 3:
                         Intent intent3 = new Intent(getActivity(), Profile_p.class);
-                        startActivity(intent3);
+                        startActivityForResult(intent3,4);
                         break;
                 }
 
@@ -118,5 +120,56 @@ public class TwoFragment extends Fragment {
 //                startActivity(intent);
 //            }
 //        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        switch (requestCode){
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Toast.makeText(getActivity(), returnedData, Toast.LENGTH_SHORT).show();
+                } else {
+                    if (resultCode == RESULT_CANCELED) {
+                        String returnedData = data.getStringExtra("data_return");
+                        Toast.makeText(getActivity(), returnedData, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+            case 2:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Toast.makeText(getActivity(), returnedData, Toast.LENGTH_SHORT).show();
+                } else {
+                    if (resultCode == RESULT_CANCELED) {
+                        String returnedData = data.getStringExtra("data_return");
+                        Toast.makeText(getActivity(), returnedData, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+            case 3:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Toast.makeText(getActivity(), returnedData, Toast.LENGTH_SHORT).show();
+                } else {
+                    if (resultCode == RESULT_CANCELED) {
+                        String returnedData = data.getStringExtra("data_return");
+                        Toast.makeText(getActivity(), returnedData, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+            case 4:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Toast.makeText(getActivity(), returnedData, Toast.LENGTH_SHORT).show();
+                } else {
+                    if (resultCode == RESULT_CANCELED) {
+                        String returnedData = data.getStringExtra("data_return");
+                        Toast.makeText(getActivity(), returnedData, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+            default:
+        }
     }
 }

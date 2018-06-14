@@ -3,6 +3,7 @@ package com.example.smallkun.aswitch;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,11 +21,12 @@ import java.util.List;
 
 public class Profile_o extends Activity implements View.OnClickListener{
 
-    private Button btnDate,btnTime,confirmbtn;
+    private Button btnDate,btnTime,confirmbtn,closebtn;
     private TextView tvDate,tvTime;
     private Spinner spinner1,spinner2;
     private RadioGroup mode, power;
-    private boolean pd1 = false, pd2=false;
+    private boolean pd1 = false, pd2=false, pd3=true;
+    private String date1,time1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,14 +81,39 @@ public class Profile_o extends Activity implements View.OnClickListener{
                     int selected = mode.getCheckedRadioButtonId();
                     RadioButton b = Profile_o.this.findViewById(selected);
 
-                    String text = spinner1.getSelectedItem().toString() + "  " + spinner2.getSelectedItem().toString()+"  "+b.getText().toString();
-                    Toast.makeText(Profile_o.this, text, Toast.LENGTH_SHORT).show();
+                    if (pd3) {
+                        String text = date1+" "+time1+" "+ spinner1.getSelectedItem().toString() + "  " + spinner2.getSelectedItem().toString()+"  "+b.getText().toString();
+                        Toast.makeText(Profile_o.this, text, Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent();
+                        intent.putExtra("data_return", text);
+                        setResult(RESULT_OK,intent);
+                        finish();
+                    } else {
+                        String text = date1+" "+time1+" "+"close";
+                        Toast.makeText(Profile_o.this, text, Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent();
+                        intent.putExtra("data_return", text);
+                        setResult(RESULT_OK,intent);
+                        finish();
+                    }
+
                 } else {
                     Toast.makeText(Profile_o.this, "Please input the Date and Time.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
+        closebtn = (Button) findViewById(R.id.closebtn);
+        closebtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent();
+                intent.putExtra("data_return", "关闭该模式");
+                setResult(RESULT_CANCELED,intent);
+                finish();
+            }
+        });
 
     }
 
@@ -97,6 +124,7 @@ public class Profile_o extends Activity implements View.OnClickListener{
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         tvDate.setText(year+" "+month+" "+day);
+                        date1 = year+" "+month+" "+day;
                         pd1= true;
                     }
                 }, 2018, 2, 14);
@@ -107,6 +135,7 @@ public class Profile_o extends Activity implements View.OnClickListener{
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         tvTime.setText(hour+":"+minute);
+                        time1 = hour+":"+minute;
                         pd2= true;
                     }
                 }, 18, 25, true);
