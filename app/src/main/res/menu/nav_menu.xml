@@ -2,31 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/zero"
-            android:title="zero"
-            android:icon="@drawable/zero"
+            android:id="@+id/account"
+            android:title="账户"
+            android:icon="@drawable/account"
 
             ></item>
 
-        <item
-            android:id="@+id/first"
-            android:title="first"
-            android:icon="@drawable/first"></item>
 
-        <item
-            android:icon="@drawable/two"
-            android:title="two"
-            android:id="@+id/two"></item>
-
-        <item
-            android:id="@+id/three"
-            android:title="three"
-            android:icon="@drawable/three"></item>
-
-        <item
-            android:id="@+id/four"
-            android:icon="@drawable/four"
-            android:title="four"></item>
 
 
     </group>

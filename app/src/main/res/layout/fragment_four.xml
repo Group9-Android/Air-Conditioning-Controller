@@ -38,14 +38,14 @@
         android:layout_gravity="center"/>
 
     <Button
-        android:id="@+id/logoff"
+        android:id="@+id/login1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="退出登录"/>
+        android:text="登录"/>
 
     <Button
-        android:id="@+id/zhuce"
+        android:id="@+id/register1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
