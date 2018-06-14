@@ -41,10 +41,10 @@
                 <Button
                     android:id="@+id/buttonopen"
                     android:layout_width="0dp"
-                    android:layout_height="78dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="25dp"
                     android:layout_weight="1"
-                    android:drawableBottom="@drawable/ic_close"
+                    android:background="@drawable/ic_close"
                     android:gravity="center" />
 
             </LinearLayout>
