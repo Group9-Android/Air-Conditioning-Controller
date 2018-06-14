@@ -19,15 +19,7 @@ public class FourFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_four,container,false);
-        Button button = (Button)view.findViewById(R.id.zhuce);
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),Main2Activity.class);
-                startActivity(intent);
 
-            }
-        });
         return view;
     }
 

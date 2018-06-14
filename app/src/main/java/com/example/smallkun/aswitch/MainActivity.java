@@ -67,7 +67,9 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
+
 
 
         mBottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
@@ -85,18 +87,21 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
         //为了显示隐藏菜单nav_menu的item图标，传入一个null参数
         navigationView.setItemIconTintList(null);
         //设置隐藏菜单nav_menu默认选择的item
-        navigationView.setCheckedItem(R.id.zero);
+        navigationView.setCheckedItem(R.id.account);
         //隐藏菜单nav_menu列表的点击事件
+        final Intent intent = new Intent(this, Login.class);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                drawerLayout.closeDrawers();
+                startActivity(intent);
                 return true;
             }
         });
 
-        //给navigationview的nav_header的头像添加点击事件
-        CircleImageView circleImageView = (CircleImageView)findViewById(R.id.icon_image);
+        //给navigationview的头部要添加点击事件，首先要获取头部控件
+        View headerView = navigationView.getHeaderView(0);
+
+
 
 
         //左边的菜单项的显示
@@ -117,7 +122,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
         mBottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.icon_one, R.string.设备控制).setActiveColorResource(R.color.green))
                 .addItem(new BottomNavigationItem(R.drawable.icon_two, R.string.情景模式).setActiveColorResource(R.color.orange))
                 .addItem(new BottomNavigationItem(R.drawable.icon_three, R.string.设备添加).setActiveColorResource(R.color.lime))
-                .addItem(new BottomNavigationItem(R.drawable.icon_four, R.string.用户信息))
+                .addItem(new BottomNavigationItem(R.drawable.icon_four, R.string.操作记录))
                 .setFirstSelectedPosition(0)
                 .initialise();
 

@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">智能空调控制</string>
     <string name="设备控制">设备控制</string>
     <string name="情景模式">情景模式</string>
     <string name="设备添加">设备添加</string>
-    <string name="用户信息">用户信息</string>
+    <string name="操作记录">操作记录</string>
 </resources>
