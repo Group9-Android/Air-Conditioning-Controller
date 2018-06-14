@@ -11,6 +11,7 @@ import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,12 +29,12 @@ import android.widget.Toast;
 
 public class Profile_m extends Activity implements OnClickListener{
 
-    private Button btnDate,btnTime,confirmbtn;
+    private Button btnDate,btnTime,confirmbtn,closebtn;
     private TextView tvDate,tvTime;
     private Spinner spinner1,spinner2;
     private RadioGroup mode, power;
-    private boolean pd1 = false, pd2=false;
-
+    private boolean pd1 = false, pd2=false, pd3 =true;
+    private String date1,time1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +50,18 @@ public class Profile_m extends Activity implements OnClickListener{
         confirmbtn = (Button) findViewById(R.id.confirmbtn);
         mode = (RadioGroup) findViewById(R.id.radioGroup);
         power = (RadioGroup) findViewById(R.id.radioPower);
+
+
         power.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
                 if (checkId == R.id.radioOff){
+                    pd3=false;
                     spinner1.setEnabled(false);
                     spinner2.setEnabled(false);
                     mode.setEnabled(false);
                 } else {
+                    pd3=true;
                     spinner1.setEnabled(true);
                     spinner2.setEnabled(true);
                     mode.setEnabled(true);
@@ -86,15 +91,41 @@ public class Profile_m extends Activity implements OnClickListener{
                 if (pd1 && pd2){
                     int selected = mode.getCheckedRadioButtonId();
                     RadioButton b = Profile_m.this.findViewById(selected);
+                    if (pd3) {
+                        String text = date1+" "+time1+" "+ spinner1.getSelectedItem().toString() + "  " + spinner2.getSelectedItem().toString()+"  "+b.getText().toString();
+                        Toast.makeText(Profile_m.this, text, Toast.LENGTH_SHORT).show();
 
-                    String text = spinner1.getSelectedItem().toString() + "  " + spinner2.getSelectedItem().toString()+"  "+b.getText().toString();
-                    Toast.makeText(Profile_m.this, text, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.putExtra("data_return", text);
+                        setResult(RESULT_OK,intent);
+                        finish();
+                    } else {
+                        String text = date1+" "+time1+" "+"close";
+                        Toast.makeText(Profile_m.this, text, Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent();
+                        intent.putExtra("data_return", text);
+                        setResult(RESULT_OK,intent);
+                        finish();
+                    }
+
                 } else {
                     Toast.makeText(Profile_m.this, "Please input the Date and Time.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+
+        closebtn = (Button) findViewById(R.id.closebtn);
+        closebtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent();
+                intent.putExtra("data_return", "关闭该模式");
+                setResult(RESULT_CANCELED,intent);
+                finish();
+            }
+        });
 
     }
 
@@ -105,6 +136,7 @@ public class Profile_m extends Activity implements OnClickListener{
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         tvDate.setText(year+" "+month+" "+day);
+                        date1 = year+" "+month+" "+day;
                         pd1= true;
                     }
                 }, 2018, 2, 12);
@@ -115,6 +147,7 @@ public class Profile_m extends Activity implements OnClickListener{
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         tvTime.setText(hour+":"+minute);
+                        time1 = hour+":"+minute;
                         pd2= true;
                     }
                 }, 18, 25, true);
