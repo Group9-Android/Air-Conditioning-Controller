@@ -139,6 +139,8 @@ public class Profile_m extends Activity implements OnClickListener{
             }
         });
 
+
+
     }
 
     public void onClick(View v) {
@@ -166,6 +168,15 @@ public class Profile_m extends Activity implements OnClickListener{
                 time.show();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Intent intent = new Intent();
+        intent.putExtra("data_return", "返回");
+        setResult(RESULT_CANCELED,intent);
+        finish();
     }
 
 }
