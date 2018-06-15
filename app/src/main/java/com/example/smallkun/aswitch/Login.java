@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,11 +23,24 @@ import java.net.URLEncoder;
 public class Login extends AppCompatActivity {
     private String user_name;
     private String pass_word;
+    public Toolbar login_toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        login_toolbar = (Toolbar)findViewById(R.id.login_toolbar);
+        login_toolbar.setTitle("");
+        setSupportActionBar(login_toolbar);
+        //为标题栏设置颜色
+        login_toolbar.setBackgroundColor(getResources().getColor(R.color.blue));
+        //显示标题栏左边自带的按钮
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        }
+
 
         //项目配置时，已设置actionbar为空
         //ActionBar actionBar=getSupportActionBar();

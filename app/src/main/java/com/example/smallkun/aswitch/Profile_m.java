@@ -13,6 +13,7 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AnalogClock;
@@ -26,6 +27,8 @@ import android.widget.TextView;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.Toolbar;
+import android.support.v7.app.ActionBar;
 
 public class Profile_m extends Activity implements OnClickListener{
 
@@ -35,6 +38,10 @@ public class Profile_m extends Activity implements OnClickListener{
     private RadioGroup mode, power;
     private boolean pd1 = false, pd2=false, pd3 =true;
     private String date1,time1;
+    public Toolbar sleep_toolbar;
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +57,11 @@ public class Profile_m extends Activity implements OnClickListener{
         confirmbtn = (Button) findViewById(R.id.confirmbtn);
         mode = (RadioGroup) findViewById(R.id.radioGroup);
         power = (RadioGroup) findViewById(R.id.radioPower);
+
+
+
+
+
 
 
         power.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

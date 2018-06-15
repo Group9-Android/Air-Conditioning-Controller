@@ -77,6 +77,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
         navigationView = (NavigationView)findViewById(R.id.nav_view);
 
         TextView textView = (TextView)findViewById(R.id.title);
+
         //设置标题加粗
         TextPaint paint = textView.getPaint();
         paint.setFakeBoldText(true);
