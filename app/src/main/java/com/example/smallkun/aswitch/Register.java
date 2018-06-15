@@ -1,11 +1,14 @@
 package com.example.smallkun.aswitch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +25,7 @@ import java.net.URLEncoder;
 public class Register extends AppCompatActivity {
     private String user_name;
     private String pass_word;
+    private String confirm_password;
     public Toolbar register_toolbar;
 
     @Override
@@ -37,8 +41,11 @@ public class Register extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+            actionBar.setHomeAsUpIndicator(R.mipmap.ic_back);
         }
+        //设置注册界面的返回按钮用于返回到登录业
+
+
 
         //项目设置时，已设置actionbar为空
         //ActionBar actionBar=getSupportActionBar();
@@ -46,23 +53,44 @@ public class Register extends AppCompatActivity {
 
         final EditText et1=(EditText)findViewById(R.id.r_account);
         final EditText et2=(EditText)findViewById(R.id.r_apw);
+        final EditText et3=(EditText)findViewById(R.id.confirm_password);
         Button button=(Button)findViewById(R.id.r_register);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 user_name = et1.getText().toString();
                 pass_word = et2.getText().toString();
+                confirm_password = et3.getText().toString();
+
                 if(user_name.equals("")){
                     Toast.makeText(Register.this, "请输入账户！ " , Toast.LENGTH_SHORT).show();
                 }else if(pass_word.equals("")) {
                     Toast.makeText(Register.this, "请输入密码！ " , Toast.LENGTH_SHORT).show();
-                }else{
+                }else if (confirm_password.equals("")){
+                    Toast.makeText(Register.this, "请输入确认密码！ " , Toast.LENGTH_SHORT).show();
+                }else if (!confirm_password.equals(pass_word)){
+                    Toast.makeText(Register.this, "两次密码请保持一致！ " , Toast.LENGTH_SHORT).show();
+                }
+                else{
                     new Thread(runnable).start();
                 }
 
             }
         });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            //设置左边菜单项的点击事件
+            case android.R.id.home:
+                finish();
+                break;
+
+        }
+        return true;
+    }
+
 
     Handler handler = new Handler() {
         @Override

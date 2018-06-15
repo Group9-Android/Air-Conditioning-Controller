@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +40,7 @@ public class Login extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+            actionBar.setHomeAsUpIndicator(R.mipmap.ic_back);
         }
 
 
@@ -50,7 +52,7 @@ public class Login extends AppCompatActivity {
         final EditText et2=(EditText)findViewById(R.id.apw);
 
         Button login=(Button)findViewById(R.id.log);
-        Button register=(Button)findViewById(R.id.register);
+        TextView register=(TextView) findViewById(R.id.register);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +78,17 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            //设置左边菜单项的点击事件
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
+    }
+
 
     Handler handler = new Handler() {
         @Override
@@ -120,4 +133,6 @@ public class Login extends AppCompatActivity {
             handler.sendMessage(msg);
         }
     };
+
+
 }
