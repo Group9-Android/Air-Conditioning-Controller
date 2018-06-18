@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="选择添加方法"
+        android:text="请输入设备序列号"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:textSize="30sp"/>
@@ -18,24 +18,26 @@
         android:layout_marginTop="40dp"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/number"
+        <EditText
+            android:id="@+id/ID"
             android:layout_width="match_parent"
-            android:layout_height="80sp"
-            android:layout_weight="3"
-            android:text="输入序号"
-            />
+            android:layout_height="70sp"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:textColor="#FFFFFF"
+            android:text="000010001001002"
+            android:textSize="15sp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50sp" />
 
         <Button
-            android:id="@+id/qrcode"
+            android:id="@+id/sure"
             android:layout_width="match_parent"
             android:layout_height="80sp"
             android:layout_weight="3"
-            android:text="扫描二维码"
-            />
+            android:text="确认"
+           />
 
 
 

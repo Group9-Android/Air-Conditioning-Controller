@@ -24,11 +24,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.widget.Toolbar;
-import android.support.v7.app.ActionBar;
+
 
 public class Profile_m extends Activity implements OnClickListener{
 
@@ -38,7 +36,7 @@ public class Profile_m extends Activity implements OnClickListener{
     private RadioGroup mode, power;
     private boolean pd1 = false, pd2=false, pd3 =true;
     private String date1,time1;
-    public Toolbar sleep_toolbar;
+
 
 
 
@@ -57,6 +55,8 @@ public class Profile_m extends Activity implements OnClickListener{
         confirmbtn = (Button) findViewById(R.id.confirmbtn);
         mode = (RadioGroup) findViewById(R.id.radioGroup);
         power = (RadioGroup) findViewById(R.id.radioPower);
+
+
 
 
 

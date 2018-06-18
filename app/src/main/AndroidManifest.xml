@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smallkun.aswitch">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 摄像头权限 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -28,10 +32,9 @@
         <activity android:name=".Profile_p"></activity>
         <activity android:name=".Login"></activity>
         <activity android:name=".Register"></activity>
-
-
-
-        
+        <activity android:name=".add_number"></activity>
+        <activity android:name=".add_qrcode"></activity>
+        <activity android:name="com.google.zxing.activity.CaptureActivity"></activity>
 
     </application>
 
