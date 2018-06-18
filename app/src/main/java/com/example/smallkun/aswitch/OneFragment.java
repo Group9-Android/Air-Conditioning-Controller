@@ -53,11 +53,12 @@ public class OneFragment extends Fragment {
 
 
 
-
+        confirmbtn.setEnabled(true);
         gradientProgressBar.setPercent(16);
 
         sbwendu.setMax(25);
         sbwendu.setProgress(16);
+        //调节温度
         sbwendu.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -73,11 +74,12 @@ public class OneFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 tempwendu.setText((seekBar.getProgress()+3)+"℃");
                 wd = seekBar.getProgress()+3;
-                confirmbtn.setEnabled(true);
+
 
             }
         });
 
+        //调节风速
         sbfengsu.setMax(3);
         sbfengsu.setProgress(0);
         sbfengsu.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -95,6 +97,7 @@ public class OneFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 tempfengsu.setText(seekBar.getProgress()+"档");
                 fs=seekBar.getProgress();
+
             }
         });
 
