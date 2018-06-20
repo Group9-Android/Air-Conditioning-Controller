@@ -116,9 +116,6 @@ public class OneFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                //wendu.setText(spinner1.getSelectedItem().toString());
-                //int i = Integer.parseInt(  );
-
                 gradientProgressBar.setPercent(wd);
                 fengsu.setText(fs+"档");
 

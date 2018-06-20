@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/gainsboro">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/home_toolbar"
+        android:id="@+id/m_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/blue"
@@ -22,14 +23,13 @@
             android:layout_gravity="center"/>
     </android.support.v7.widget.Toolbar>
 
-
-
     <LinearLayout
         android:id="@+id/ll_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="12dp">
+        android:layout_margin="12dp"
+        android:background="@color/white">
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,13 +54,15 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/ll_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
-        android:layout_margin="12dp">
+        android:layout_margin="12dp"
+        android:background="@color/white">
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,12 +85,13 @@
             android:text="设置时间"/>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginLeft="12dp"
-
+        android:background="@color/white"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -129,6 +132,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginLeft="12dp"
         android:layout_marginBottom="12dp"
+        android:background="@color/white"
         >
 
         <TextView
@@ -150,6 +154,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="12dp"
+        android:background="@color/white"
         >
 
         <TextView
@@ -170,6 +175,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="12dp"
+        android:background="@color/white"
         >
 
         <TextView
@@ -218,6 +224,7 @@
         android:orientation="horizontal"
         android:layout_margin="12dp"
         android:gravity="center"
+        android:background="@color/white"
         >
 
         <Button
@@ -234,6 +241,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
+        android:background="@color/white"
         >
 
         <Button

@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="80sp"
             android:layout_weight="3"
-            android:text="输入序号"
+            android:text="输入序列号"
             />
         <TextView
             android:layout_width="match_parent"

@@ -8,11 +8,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.example.smallkun.aswitch.util.Constant;
 import com.google.zxing.activity.CaptureActivity;
@@ -24,6 +27,17 @@ import com.google.zxing.activity.CaptureActivity;
 public class add_qrcode extends AppCompatActivity {
     private Button qrcode;
     private TextView result;
+    private Toolbar qrcode_toolbar;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +45,19 @@ public class add_qrcode extends AppCompatActivity {
         setContentView(R.layout.add_qrcode);
         qrcode = (Button)findViewById(R.id.btn_qrcode);
         result = (TextView)findViewById(R.id.txt_result);
+        qrcode_toolbar = (Toolbar) findViewById(R.id.qrcode_toolbar);
+        qrcode_toolbar.setTitle("");
+        setSupportActionBar(qrcode_toolbar);
+
+        //显示标题栏左边自带的按钮
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.mipmap.ic_back);
+        }
+
+
+
 
         qrcode.setOnClickListener(new View.OnClickListener() {
             @Override
