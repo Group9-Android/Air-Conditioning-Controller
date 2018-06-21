@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:float="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -18,55 +19,111 @@
             android:layout_width="wrap_content"
             android:layout_gravity="center"/>
     </android.support.v7.widget.Toolbar>
+
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="20sp" />
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_marginLeft="5sp"
-            android:layout_width="70sp"
-            android:layout_height="50sp"
-            android:text="账户："/>
+        android:layout_marginLeft="20dp"
+        android:layout_height="25sp"
+        android:layout_marginTop="20dp"
+        android:text="ACCOUNT"
+        android:textSize="23dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="#33000000" />
 
-        <EditText
-            android:id="@+id/r_account"
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_account"/>
+
+
+        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
-            android:layout_height="50sp" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/r_account"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="UserName" />
+        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
     </LinearLayout>
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_marginLeft="5sp"
-            android:layout_width="70sp"
-            android:layout_height="50sp"
-            android:text="密码："/>
 
-        <EditText
-            android:id="@+id/r_apw"
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_password"/>
+
+        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:inputType="textPassword"/>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/r_apw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password" />
+        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
     </LinearLayout>
+
+
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal" android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_marginLeft="5sp"
-            android:layout_width="70sp"
-            android:layout_height="50sp"
-            android:text="确认密码："/>
 
-        <EditText
-            android:id="@+id/confirm_password"
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_password"/>
+
+        <com.wrapp.floatlabelededittext.FloatLabeledEditText
             android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:inputType="textPassword"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <EditText
+                android:id="@+id/confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Confirm" />
+        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
     </LinearLayout>
 
     <TextView
