@@ -12,6 +12,7 @@ import android.app.TimePickerDialog.OnTimeSetListener;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -60,6 +61,8 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
         mode = (RadioGroup) findViewById(R.id.radioGroup);
         power = (RadioGroup) findViewById(R.id.radioPower);
 
+        //final SharedPreferences.Editor editor =  getSharedPreferences("data", MODE_PRIVATE).edit();
+        //final SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
 
         power.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -79,12 +82,14 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
         });
 
         List<String> datas = new ArrayList<>();
-        for (int i = 0; i < 13; i++) {
+        for (int i = 4; i < 15; i++) {
             datas.add(16 + i+"℃");
         }
         //适配器
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,datas);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,datas);
         spinner1.setAdapter(adapter);
+
+
 
         List<String> data = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -93,6 +98,14 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
         //适配器
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,data);
         spinner2.setAdapter(adapter1);
+
+        //加载存储的数据
+        //loadData();
+        SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+        spinner1.setSelection(pref.getInt("WD",20)-20);
+        spinner2.setSelection(pref.getInt("FS",0));
+        power.check(pref.getInt("PW",0));
+        mode.check(pref.getInt("MS",0));
 
         confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +117,15 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
                         String text = date1+" "+time1+" "+ spinner1.getSelectedItem().toString() + "  " + spinner2.getSelectedItem().toString()+"  "+b.getText().toString();
                         Toast.makeText(Profile_m.this, text, Toast.LENGTH_SHORT).show();
 
+                        //存储数据
+                        int pos =spinner1.getSelectedItemPosition()+20;
+                        int pos1 = spinner2.getSelectedItemPosition();
+                        int pos2 = mode.getCheckedRadioButtonId();
+                        int pos3 = power.getCheckedRadioButtonId();
+                        saveData(time1,pos,pos1,pos2,pos3);
+
+
+                        //将数据传给上一个activity
                         Intent intent = new Intent();
                         intent.putExtra("data_return", text);
                         setResult(RESULT_OK,intent);
@@ -112,6 +134,19 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
                         String text = date1+" "+time1+" "+"close";
                         Toast.makeText(Profile_m.this, text, Toast.LENGTH_SHORT).show();
 
+                        //存储数据
+                        SharedPreferences.Editor editor =  getSharedPreferences("data", MODE_PRIVATE).edit();
+                        editor.putString("Time",time1);
+                        int pos =spinner1.getSelectedItemPosition()+20;
+                        int pos1 = spinner2.getSelectedItemPosition();
+                        editor.putInt("WD",pos);
+                        editor.putInt("FS",pos1);
+                        editor.putString("MS",b.getText().toString());
+                        editor.putBoolean("PW",pd3);
+                        editor.putInt("PW",power.getCheckedRadioButtonId());
+                        editor.apply();
+
+                        //将数据传给上一个activity
                         Intent intent = new Intent();
                         intent.putExtra("data_return", text);
                         setResult(RESULT_OK,intent);
@@ -140,7 +175,25 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
 
     }
 
+//    public void loadData(){
+//        SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+//        spinner1.setSelection(pref.getInt("WD",20)-20);
+//        spinner2.setSelection(pref.getInt("FS",0));
+//        power.check(pref.getInt("PW",0));
+//        mode.check(pref.getInt("MS",0));
+//    }
 
+
+    public void saveData(String time1, int pos, int pos1, int pos2, int pos3){
+        SharedPreferences.Editor editor =  getSharedPreferences("data", MODE_PRIVATE).edit();
+        editor.putString("Time",time1);
+
+        editor.putInt("WD",pos);
+        editor.putInt("FS",pos1);
+        editor.putInt("MS",pos2);
+        editor.putInt("PW",pos3);
+        editor.apply();
+    }
 
     public void onClick(View v) {
         switch (v.getId()) {
