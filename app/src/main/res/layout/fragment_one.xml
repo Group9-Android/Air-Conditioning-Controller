@@ -25,26 +25,22 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
-                    />
-
                 <com.example.smallkun.aswitch.GradientProgressBar
                     android:id="@+id/progress_bar"
                     android:layout_width="0dp"
                     android:layout_height="248dp"
-                    android:layout_weight="4"
+                    android:layout_weight="6"
+                    android:layout_marginLeft="50dp"
                     android:layout_gravity="center" />
 
-                <Button
-                    android:id="@+id/buttonopen"
+                <ImageButton
+                    android:id="@+id/buttonclose"
                     android:layout_width="0dp"
-                    android:layout_height="55dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="25dp"
                     android:layout_weight="1"
-                    android:background="@drawable/ic_close"
+                    android:background="@drawable/btn_shape"
+                    android:src="@drawable/ic_close"
                     android:gravity="center" />
 
             </LinearLayout>
