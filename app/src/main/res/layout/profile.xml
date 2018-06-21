@@ -23,235 +23,255 @@
             android:layout_gravity="center"/>
     </android.support.v7.widget.Toolbar>
 
+
     <LinearLayout
-        android:id="@+id/ll_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="12dp"
+        android:orientation="vertical"
         android:background="@color/white">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_date"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="选择日期:"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            android:layout_margin="12dp">
 
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择日期:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ededed"
+                android:padding="8dp"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnDatePick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置日期"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_time"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ededed"
-            android:padding="8dp"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="12dp">
 
-        <Button
-            android:id="@+id/btnDatePick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="设置日期"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择时间:"
+                android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ededed"
+                android:padding="8dp"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnTimePick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置时间"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
 
     <LinearLayout
-        android:id="@+id/ll_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginTop="12dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="在此时间下："
+                android:textSize="18sp"/>
+
+            <RadioGroup
+                android:id="@+id/radioPower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioOn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:checked="true"
+                    android:text="开启" />
+
+                <RadioButton
+                    android:id="@+id/radioOff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:text="关闭" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="温度："
+                android:textSize="18sp"/>
+
+            <Spinner
+                android:id="@+id/wendu"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="风速："
+                android:textSize="18sp"/>
+
+            <Spinner
+                android:id="@+id/fengsu"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="模式："
+                android:textSize="18sp"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <RadioButton
+                    android:id="@+id/radioButtonzhileng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:checked="true"
+                    android:text="制冷" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonsongfeng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:text="送风" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonchoushi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:text="抽湿" />
+            </RadioGroup>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="12dp"
+        android:layout_marginTop="12dp"
         android:background="@color/white">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="选择时间:"
-            android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#ededed"
-            android:padding="8dp"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnTimePick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="设置时间"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="12dp"
-        android:background="@color/white"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="在此时间下："
-            android:textSize="18sp"/>
-
-        <RadioGroup
-            android:id="@+id/radioPower"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radioOn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="8dp"
-                android:checked="true"
-                android:text="开启" />
-
-            <RadioButton
-                android:id="@+id/radioOff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="8dp"
-                android:text="关闭" />
-
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginBottom="12dp"
-        android:background="@color/white"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="温度："
-            android:textSize="18sp"/>
-
-        <Spinner
-            android:id="@+id/wendu"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-             />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="12dp"
-        android:background="@color/white"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="风速："
-            android:textSize="18sp"/>
-
-        <Spinner
-            android:id="@+id/fengsu"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="12dp"
-        android:background="@color/white"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="模式："
-            android:textSize="18sp"/>
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_margin="12dp"
+            android:layout_gravity="center"
             >
 
-            <RadioButton
-                android:id="@+id/radioButtonzhileng"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/confirmbtn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="8dp"
-                android:checked="true"
-                android:text="制冷" />
+                android:text="开启"
+                android:textSize="18sp"
+                />
 
-            <RadioButton
-                android:id="@+id/radioButtonsongfeng"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/closebtn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="8dp"
-                android:text="送风" />
+                android:text="关闭该模式"
+                android:textSize="18sp"
+                />
 
-            <RadioButton
-                android:id="@+id/radioButtonchoushi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="8dp"
-                android:text="抽湿" />
-        </RadioGroup>
+        </LinearLayout>
+
+
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="12dp"
-        android:gravity="center"
-        android:background="@color/white"
-        >
 
-        <Button
-            android:id="@+id/confirmbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="开启"
-            android:textSize="18sp"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:background="@color/white"
-        >
-
-        <Button
-            android:id="@+id/closebtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="关闭该模式"
-            android:textSize="18sp"
-            />
-    </LinearLayout>
 
 
 </LinearLayout>
