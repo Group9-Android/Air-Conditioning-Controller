@@ -1,7 +1,9 @@
 package com.example.smallkun.aswitch;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,12 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +31,9 @@ import java.util.List;
 
 public class Start extends Fragment {
 
+    private Button button;
+    private GradientProgressBar gradientProgressBar;
+
 
 
     @Nullable
@@ -33,9 +41,11 @@ public class Start extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.start,container,false);
-        final Button button = (Button)view.findViewById(R.id.button);
-        
-        GradientProgressBar gradientProgressBar = (GradientProgressBar)view.findViewById(R.id.progress_bar);
+        button = (Button)view.findViewById(R.id.button);
+        gradientProgressBar = (GradientProgressBar)view.findViewById(R.id.progress_bar);
+
+
+
         gradientProgressBar.setPercent(16);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,5 +68,7 @@ public class Start extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
+
 }
 
