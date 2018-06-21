@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,9 @@ public class Start extends Fragment {
         button = (Button)view.findViewById(R.id.button);
         gradientProgressBar = (GradientProgressBar)view.findViewById(R.id.progress_bar);
 
+        //确认按钮字体加粗
+        TextPaint paint = button.getPaint();
+        paint.setFakeBoldText(true);
 
 
         gradientProgressBar.setPercent(16);
