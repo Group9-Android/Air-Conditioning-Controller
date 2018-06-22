@@ -92,17 +92,6 @@ public class Register extends AppCompatActivity {
     }
 
 
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Bundle data = msg.getData();
-            String result = data.getString("response");
-            TextView rs = (TextView)findViewById(R.id.register_result);
-            rs.setText(result);
-
-        }
-    };
 
     //新线程进行网络请求
     Runnable runnable = new Runnable() {
@@ -130,6 +119,18 @@ public class Register extends AppCompatActivity {
             //data.putString("value", "请求结果");
             msg.setData(data);
             handler.sendMessage(msg);
+        }
+    };
+
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle data = msg.getData();
+            String result = data.getString("response");
+            TextView rs = (TextView)findViewById(R.id.register_result);
+            rs.setText(result);
         }
     };
 }

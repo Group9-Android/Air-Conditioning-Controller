@@ -40,10 +40,10 @@ public class TwoFragment extends Fragment {
 
     private void initializeData(){
         scenes = new ArrayList<>();
-        scenes.add(new scene("回家", R.drawable.ic_close) );
-        scenes.add(new scene("睡眠", R.drawable.ic_close) );
-        scenes.add(new scene("运动", R.drawable.ic_close) );
-        scenes.add(new scene("离家", R.drawable.ic_close) );
+        scenes.add(new scene("回家", R.drawable.home) );
+        scenes.add(new scene("睡眠", R.drawable.sleep) );
+        scenes.add(new scene("运动", R.drawable.sport) );
+        scenes.add(new scene("离家", R.drawable.leave) );
     }
 
 
