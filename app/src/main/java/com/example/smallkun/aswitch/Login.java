@@ -97,9 +97,10 @@ public class Login extends AppCompatActivity {
             super.handleMessage(msg);
             Bundle data = msg.getData();
             String result = data.getString("response");
+
+            //返回处理结果
             TextView lr = (TextView)findViewById(R.id.login_result);
             lr.setText(result);
-
         }
     };
 
