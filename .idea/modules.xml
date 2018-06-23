@@ -4,10 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Air-Conditioning-Controller.iml" filepath="$PROJECT_DIR$/Air-Conditioning-Controller.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-<<<<<<< HEAD
-=======
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
->>>>>>> c7b6e250b43ff5546f55b637b34eff0857444602
     </modules>
   </component>
 </project>
