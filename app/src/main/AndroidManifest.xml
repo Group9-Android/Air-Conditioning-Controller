@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smallkun.aswitch">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 摄像头权限 -->
-    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <!-- 自动聚焦权限 -->
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -21,21 +24,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Main_weather" />
+        <activity android:name=".WeatherActivity" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".Profile_m" />
+        <activity android:name=".Profile_n" />
+        <activity android:name=".Profile_o" />
+        <activity android:name=".Profile_p" />
+        <activity android:name=".Login" />
+        <activity android:name=".Register" />
+        <activity android:name=".add_number" />
+        <activity android:name=".add_qrcode" />
+        <activity android:name="com.google.zxing.activity.CaptureActivity" />
 
-        <activity android:name="com.example.smallkun.aswitch.Main_weather"></activity>
+        <receiver android:name=".AppWidget1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
 
-        <activity android:name="com.example.smallkun.aswitch.WeatherActivity"></activity>
-        <activity android:name=".Main2Activity"></activity>
-        <activity android:name=".Profile_m"></activity>
-        <activity android:name=".Profile_n"></activity>
-        <activity android:name=".Profile_o"></activity>
-        <activity android:name=".Profile_p"></activity>
-        <activity android:name=".Login"></activity>
-        <activity android:name=".Register"></activity>
-        <activity android:name=".add_number"></activity>
-        <activity android:name=".add_qrcode"></activity>
-        <activity android:name="com.google.zxing.activity.CaptureActivity"></activity>
-
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget1_info" />
+        </receiver>
     </application>
 
 </manifest>
