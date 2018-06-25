@@ -17,20 +17,20 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="上班"/>
+        android:text="运动"/>
 
     <Button
         android:id="@+id/b3"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="其他"/>
+        android:text="睡眠"/>
 
     <Button
         android:id="@+id/b4"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="自定义"/>
+        android:text="离家"/>
 
 </LinearLayout>
