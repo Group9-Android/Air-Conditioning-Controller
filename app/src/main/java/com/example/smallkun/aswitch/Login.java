@@ -71,6 +71,7 @@ public class Login extends AppCompatActivity {
                 }else if(pass_word.equals("")) {
                     Toast.makeText(Login.this, "请输入密码！ " , Toast.LENGTH_SHORT).show();
                 }else{
+
                     new Thread(runnable).start();
                     //返回处理结果
 
@@ -108,8 +109,8 @@ public class Login extends AppCompatActivity {
             result = data.getString("response");
 
             //提取返回数据中的内容
-            temp = result.split("=|,");
-            result = temp[1];
+            temp = result.split(",");
+            result = temp[0];
             ok = Integer.parseInt(result.trim());//trim方法用于去除当前 String 对象移除所有前导空白字符和尾部空白字符
             if (ok == 100){
                 lr.setText("");
@@ -117,11 +118,23 @@ public class Login extends AppCompatActivity {
                 intent.putExtra("b",user_name);
                 setResult(RESULT_OK,intent);
                 finish();
-            } else {
+            } else if (ok == 101){
+                //lr.setText("帐户名或登录密码不正确，请重新输入");
+                lr.setText("");
+                Toast.makeText(Login.this, "登录成功！请绑定空调", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("b",user_name);
+                setResult(RESULT_OK,intent);
+                finish();
+            }  else if (ok == 201){
+                //lr.setText("帐户名或登录密码不正确，请重新输入");
                 lr.setText("帐户名或登录密码不正确，请重新输入");
-
+                //Toast.makeText(Login.this, temp[1], Toast.LENGTH_SHORT).show();
+            }  else if (ok == 202){
+                //lr.setText("帐户名或登录密码不正确，请重新输入");
+                lr.setText("帐户名不存在，请注册或重新登录");
+                //Toast.makeText(Login.this, temp[1], Toast.LENGTH_SHORT).show();
             }
-
 
 
 
@@ -129,8 +142,38 @@ public class Login extends AppCompatActivity {
         }
     };
 
+//    Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            Bundle data = msg.getData();
+//            lr = (TextView)findViewById(R.id.login_result);
+//            String result = data.getString("response");
+//            String[] resultArray = result.split(",");//数据用,分割存在resultArray数组里面
+//            //这里写要对数据进行的操作
+//           if (resultArray[0]=="201") {
+//               lr.setText("帐户名或登录密码不正确，请重新输入");
+//           } else if (resultArray[0]=="101") {
+//                lr.setText("登录成功，请绑定设备");
+//                Intent intent = new Intent();
+//                intent.putExtra("b",user_name);
+//                setResult(RESULT_OK,intent);
+//                finish();
+//           } else if (resultArray[0]=="100") {
+//               lr.setText("登录成功 "+resultArray[1]);
+//               Intent intent = new Intent();
+//               intent.putExtra("b",user_name);
+//               setResult(RESULT_OK,intent);
+//               finish();
+//           } else if (resultArray[0]=="202") {
+//               lr.setText("登录失败");
+//           }
+//        }
+//    };
+
     
 
+    //新线程进行网络请求
     //新线程进行网络请求
     Runnable runnable = new Runnable() {
         @Override
@@ -140,8 +183,8 @@ public class Login extends AppCompatActivity {
             //
             URL url=null;
             try{
-                url = new URL("http://47.106.181.0:8080/air/Login?account="+
-                        URLEncoder.encode(user_name, "utf-8")+"&password="+URLEncoder.encode(pass_word, "utf-8"));
+                url = new URL("http://47.106.181.0:8080/air/Login?account="+URLEncoder.encode(user_name, "utf-8")+"&password="+URLEncoder.encode(pass_word, "utf-8"));
+
             }catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

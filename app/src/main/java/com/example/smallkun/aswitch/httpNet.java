@@ -1,16 +1,18 @@
 package com.example.smallkun.aswitch;
 
+/**
+ * Created by smallkun on 2017/11/27.
+ */
+
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-/**
- * Created by vbn on 18/6/14.
- */
+import java.net.URLEncoder;
 
 public class httpNet {
 
