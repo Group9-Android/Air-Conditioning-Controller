@@ -115,7 +115,7 @@
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="16℃" />
+                android:text="25℃" />
 
         </LinearLayout>
 
@@ -190,7 +190,6 @@
                 android:id="@+id/buttonconfirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:text="确认设置"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

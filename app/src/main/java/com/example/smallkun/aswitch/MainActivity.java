@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -40,6 +42,10 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private NavigationView navigationView;
+    private TextView textView;
+    private TextView username;//隐藏菜单内菜单头显示信息1
+    private TextView mail;//隐藏菜单内菜单头显示信息2
+
 
 
 
@@ -70,23 +76,38 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case 1:
+                if(resultCode == RESULT_OK){
+                    String b = data.getStringExtra("b");
+                    mail = (TextView)findViewById(R.id.mail);
+                    username = (TextView)findViewById(R.id.username);
+                    mail.setText("已登录");
+                    username.setText("用户名："+b);
+
+                    //mail.setText(mail_text);
+                    //username.setText(username_text);
+
+
+                }
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
-
-
         mBottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         navigationView = (NavigationView)findViewById(R.id.nav_view);
+        textView = (TextView)findViewById(R.id.title);
+        mail = (TextView)findViewById(R.id.mail);
 
-        TextView textView = (TextView)findViewById(R.id.title);
 
         //设置标题加粗
         TextPaint paint = textView.getPaint();
@@ -99,15 +120,42 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
         navigationView.setItemIconTintList(null);
         //设置隐藏菜单nav_menu默认选择的item
         navigationView.setCheckedItem(R.id.account);
+
         //隐藏菜单nav_menu列表的点击事件
-        final Intent intent = new Intent(this, Login.class);
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                startActivity(intent);
+                mail = (TextView) findViewById(R.id.mail);
+                username =(TextView)findViewById(R.id.username);
+                switch (item.getItemId()) {
+                    case R.id.account:
+                        if (mail.getText().equals("尚未登录")) {
+                            Intent intent = new Intent(MainActivity.this, Login.class);
+                            startActivityForResult(intent, 1);
+
+                        } else {
+                            Toast.makeText(MainActivity.this, "已成功退出", Toast.LENGTH_LONG).show();
+                        }
+                        break;
+                    case R.id.exit:
+                        if (mail.getText().equals("尚未登录")){
+                            Toast.makeText(MainActivity.this, "尚未登录",Toast.LENGTH_LONG).show();
+
+
+                        } else {
+                            username.setText("");
+                            mail.setText("尚未登录");
+                            Toast.makeText(MainActivity.this, "已退出",Toast.LENGTH_LONG).show();
+                        }
+
+                }
                 return true;
             }
         });
+
+
+
 
         //给navigationview的头部要添加点击事件，首先要获取头部控件
         View headerView = navigationView.getHeaderView(0);
@@ -136,13 +184,9 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                 .addItem(new BottomNavigationItem(R.drawable.icon_four, R.string.操作记录).setActiveColorResource(R.color.orange))
                 .setFirstSelectedPosition(0)
                 .initialise();
-
         mBottomNavigationBar.setTabSelectedListener(MainActivity.this);
         setDefaultFragment();
     }
-
-
-
 
 
 

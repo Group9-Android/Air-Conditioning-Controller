@@ -127,14 +127,14 @@ public class GradientProgressBar extends View {
      * @param percent
      */
     public void setPercent(int percent) {
-        if (percent < 3) {
-            percent = 3;
-        } else if (percent > 28) {
-            percent = 28;
+        if (percent < 20) {
+            percent = 20;
+        } else if (percent > 30) {
+            percent = 30;
         }
         this.weather = percent;
 
-        this.percent = 4*(percent-3);
+        this.percent = 10*(percent-20);
         invalidate();
     }
 }

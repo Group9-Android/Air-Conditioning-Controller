@@ -28,7 +28,7 @@ import java.util.List;
 
 public class OneFragment extends Fragment {
 
-    public int wd=0;
+    public int wd=25;
     public int fs=0;
 
 
@@ -55,11 +55,11 @@ public class OneFragment extends Fragment {
 
 
 
-        confirmbtn.setEnabled(true);
-        gradientProgressBar.setPercent(16);
 
-        sbwendu.setMax(25);
-        sbwendu.setProgress(16);
+        gradientProgressBar.setPercent(25);
+
+        sbwendu.setMax(10);
+        sbwendu.setProgress(5);
         //调节温度
         sbwendu.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -74,8 +74,10 @@ public class OneFragment extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                tempwendu.setText((seekBar.getProgress()+3)+"℃");
-                wd = seekBar.getProgress()+3;
+                tempwendu.setText((seekBar.getProgress()+20)+"℃");
+                wd = seekBar.getProgress()+20;
+
+                //confirmbtn.setEnabled(true);
 
 
             }
@@ -99,6 +101,8 @@ public class OneFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 tempfengsu.setText(seekBar.getProgress()+"档");
                 fs=seekBar.getProgress();
+
+                //confirmbtn.setEnabled(true);
 
             }
         });

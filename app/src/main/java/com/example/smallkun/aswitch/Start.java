@@ -50,7 +50,7 @@ public class Start extends Fragment {
         paint.setFakeBoldText(true);
 
 
-        gradientProgressBar.setPercent(16);
+        gradientProgressBar.setPercent(25);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

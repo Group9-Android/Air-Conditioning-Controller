@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -26,11 +28,16 @@ public class Login extends AppCompatActivity {
     private String user_name;
     private String pass_word;
     public Toolbar login_toolbar;
+    private String[] temp;//获取登录之后的信息
+    private String result;//返回登录是否成功结果
+    private int ok;
+    private TextView lr;//显示登录结果
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        lr = (TextView)findViewById(R.id.login_result);
         login_toolbar = (Toolbar)findViewById(R.id.login_toolbar);
         login_toolbar.setTitle("");
         setSupportActionBar(login_toolbar);
@@ -65,6 +72,8 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "请输入密码！ " , Toast.LENGTH_SHORT).show();
                 }else{
                     new Thread(runnable).start();
+                    //返回处理结果
+
                 }
 
             }
@@ -96,11 +105,27 @@ public class Login extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Bundle data = msg.getData();
-            String result = data.getString("response");
+            result = data.getString("response");
 
-            //返回处理结果
-            TextView lr = (TextView)findViewById(R.id.login_result);
-            lr.setText(result);
+            //提取返回数据中的内容
+            temp = result.split("=|,");
+            result = temp[1];
+            ok = Integer.parseInt(result.trim());//trim方法用于去除当前 String 对象移除所有前导空白字符和尾部空白字符
+            if (ok == 100){
+                lr.setText("");
+                Intent intent = new Intent();
+                intent.putExtra("b",user_name);
+                setResult(RESULT_OK,intent);
+                finish();
+            } else {
+                lr.setText("帐户名或登录密码不正确，请重新输入");
+
+            }
+
+
+
+
+
         }
     };
 
