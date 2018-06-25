@@ -5,6 +5,7 @@
 
     <color name="colorAccent">#1E90FF</color>
     <color name="gainsboro">#dcdcdc</color><!--淡灰色 -->
+    <color name="red">#be1a1a</color>
 
     <color name="orange">#FFC107</color>
     <color name="green">#259B24</color>

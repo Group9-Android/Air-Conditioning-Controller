@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,12 +28,17 @@ public class Register extends AppCompatActivity {
     private String pass_word;
     private String confirm_password;
     public Toolbar register_toolbar;
+    private String[] temp;//获取登录之后的信息
+    private String result;//返回登录是否成功结果
+    private int ok;
+    private TextView lr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         register_toolbar = (Toolbar)findViewById(R.id.register_toolbar);
+        lr = (TextView)findViewById(R.id.register_result);
         register_toolbar.setTitle("");
         setSupportActionBar(register_toolbar);
         //为标题栏设置颜色
@@ -128,9 +134,18 @@ public class Register extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Bundle data = msg.getData();
-            String result = data.getString("response");
-            TextView rs = (TextView)findViewById(R.id.register_result);
-            rs.setText(result);
+            result = data.getString("response");
+            temp = result.split("=|,");
+            result = temp[1];
+            ok = Integer.parseInt(result.trim());
+            if (ok == 201){
+                lr.setText("该账号已注册，请重新输入");
+            } else {
+                Toast.makeText(Register.this, "注册成功",2).show();
+                finish();
+            }
+
+
         }
     };
 }
