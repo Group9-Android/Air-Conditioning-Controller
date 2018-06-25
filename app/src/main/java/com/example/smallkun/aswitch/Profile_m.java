@@ -52,7 +52,7 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
         setContentView(R.layout.profile);
         //btnDate = (Button) findViewById(R.id.btnDatePick);
         btnTime = (Button) findViewById(R.id.btnTimePick);
-        tvDate = (TextView) findViewById(R.id.tv_date);
+        //tvDate = (TextView) findViewById(R.id.tv_date);
         tvTime = (TextView) findViewById(R.id.tv_time);
         //btnDate.setOnClickListener(this);
         btnTime.setOnClickListener(this);
@@ -102,7 +102,7 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
 
         //加载存储的数据
         //loadData();
-        SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences("data1",MODE_PRIVATE);
         spinner1.setSelection(pref.getInt("WD",20)-20);
         spinner2.setSelection(pref.getInt("FS",0));
         power.check(pref.getInt("PW",0));
@@ -154,7 +154,7 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
                     }
 
                 } else {
-                    Toast.makeText(Profile_m.this, "Please input the Date and Time.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Profile_m.this, "Please input the Time.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -185,7 +185,7 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
 
 
     public void saveData(String time1, int pos, int pos1, int pos2, int pos3){
-        SharedPreferences.Editor editor =  getSharedPreferences("data", MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor =  getSharedPreferences("data1", MODE_PRIVATE).edit();
         editor.putString("Time",time1);
         editor.putBoolean("pdTime",pd2);
         editor.putInt("WD",pos);

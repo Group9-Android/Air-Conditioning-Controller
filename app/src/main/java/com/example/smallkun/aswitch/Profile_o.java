@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,18 +26,18 @@ public class Profile_o extends Activity implements View.OnClickListener{
     private TextView tvDate,tvTime;
     private Spinner spinner1,spinner2;
     private RadioGroup mode, power;
-    private boolean pd1 = false, pd2=false, pd3=true;
+    private boolean pd1 = true, pd2=false, pd3=true;
     private String date1,time1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_o);
-        btnDate = (Button) findViewById(R.id.btnDatePick);
+        //btnDate = (Button) findViewById(R.id.btnDatePick);
         btnTime = (Button) findViewById(R.id.btnTimePick);
-        tvDate = (TextView) findViewById(R.id.tv_date);
+        //tvDate = (TextView) findViewById(R.id.tv_date);
         tvTime = (TextView) findViewById(R.id.tv_time);
-        btnDate.setOnClickListener(this);
+        //btnDate.setOnClickListener(this);
         btnTime.setOnClickListener(this);
         spinner1 = (Spinner) findViewById(R.id.wendu);
         spinner2 = (Spinner) findViewById(R.id.fengsu);
@@ -47,10 +48,12 @@ public class Profile_o extends Activity implements View.OnClickListener{
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
                 if (checkId == R.id.radioOff){
+                    pd3=false;
                     spinner1.setEnabled(false);
                     spinner2.setEnabled(false);
                     mode.setEnabled(false);
                 } else {
+                    pd3=true;
                     spinner1.setEnabled(true);
                     spinner2.setEnabled(true);
                     mode.setEnabled(true);
@@ -59,7 +62,7 @@ public class Profile_o extends Activity implements View.OnClickListener{
         });
 
         List<String> datas = new ArrayList<>();
-        for (int i = 0; i < 13; i++) {
+        for (int i = 4; i < 15; i++) {
             datas.add(16 + i+"℃");
         }
         //适配器
@@ -74,6 +77,18 @@ public class Profile_o extends Activity implements View.OnClickListener{
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,data);
         spinner2.setAdapter(adapter1);
 
+        //加载存储的数据
+        //loadData();
+        SharedPreferences pref = getSharedPreferences("data2",MODE_PRIVATE);
+        spinner1.setSelection(pref.getInt("WD",20)-20);
+        spinner2.setSelection(pref.getInt("FS",0));
+        power.check(pref.getInt("PW",0));
+        mode.check(pref.getInt("MS",0));
+        pd2 = pref.getBoolean("pdTime",false);
+        if (pd2) {
+            time1 = pref.getString("Time","");
+            tvTime.setText(time1);}
+
         confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,16 +97,30 @@ public class Profile_o extends Activity implements View.OnClickListener{
                     RadioButton b = Profile_o.this.findViewById(selected);
 
                     if (pd3) {
-                        String text = date1+" "+time1+" "+ spinner1.getSelectedItem().toString() + "  " + spinner2.getSelectedItem().toString()+"  "+b.getText().toString();
+                        String text = time1+" "+ spinner1.getSelectedItem().toString() + "  " + spinner2.getSelectedItem().toString()+"  "+b.getText().toString();
                         Toast.makeText(Profile_o.this, text, Toast.LENGTH_SHORT).show();
+
+                        //存储数据
+                        int pos =spinner1.getSelectedItemPosition()+20;
+                        int pos1 = spinner2.getSelectedItemPosition();
+                        int pos2 = mode.getCheckedRadioButtonId();
+                        int pos3 = power.getCheckedRadioButtonId();
+                        saveData(time1,pos,pos1,pos2,pos3);
 
                         Intent intent = new Intent();
                         intent.putExtra("data_return", text);
                         setResult(RESULT_OK,intent);
                         finish();
                     } else {
-                        String text = date1+" "+time1+" "+"close";
+                        String text = time1+" "+"close";
                         Toast.makeText(Profile_o.this, text, Toast.LENGTH_SHORT).show();
+
+                        //存储数据
+                        int pos =spinner1.getSelectedItemPosition()+20;
+                        int pos1 = spinner2.getSelectedItemPosition();
+                        int pos2 = mode.getCheckedRadioButtonId();
+                        int pos3 = power.getCheckedRadioButtonId();
+                        saveData(time1,pos,pos1,pos2,pos3);
 
                         Intent intent = new Intent();
                         intent.putExtra("data_return", text);
@@ -100,7 +129,7 @@ public class Profile_o extends Activity implements View.OnClickListener{
                     }
 
                 } else {
-                    Toast.makeText(Profile_o.this, "Please input the Date and Time.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Profile_o.this, "Please input the Time.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -117,19 +146,30 @@ public class Profile_o extends Activity implements View.OnClickListener{
 
     }
 
+    public void saveData(String time1, int pos, int pos1, int pos2, int pos3){
+        SharedPreferences.Editor editor =  getSharedPreferences("data2", MODE_PRIVATE).edit();
+        editor.putString("Time",time1);
+        editor.putBoolean("pdTime",pd2);
+        editor.putInt("WD",pos);
+        editor.putInt("FS",pos1);
+        editor.putInt("MS",pos2);
+        editor.putInt("PW",pos3);
+        editor.apply();
+    }
+
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnDatePick:
-                DatePickerDialog datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        tvDate.setText(year+" "+month+" "+day);
-                        date1 = year+" "+month+" "+day;
-                        pd1= true;
-                    }
-                }, 2018, 2, 14);
-                datePicker.show();
-                break;
+//            case R.id.btnDatePick:
+//                DatePickerDialog datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker view, int year, int month, int day) {
+//                        tvDate.setText(year+" "+month+" "+day);
+//                        date1 = year+" "+month+" "+day;
+//                        pd1= true;
+//                    }
+//                }, 2018, 2, 14);
+//                datePicker.show();
+//                break;
             case R.id.btnTimePick:
                 TimePickerDialog time = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override

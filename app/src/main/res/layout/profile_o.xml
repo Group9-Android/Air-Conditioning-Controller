@@ -29,35 +29,6 @@
         android:orientation="vertical"
         android:background="@color/white">
 
-        <LinearLayout
-            android:id="@+id/ll_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="12dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="选择日期:"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#ededed"
-                android:padding="8dp"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/btnDatePick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="设置日期"/>
-
-
-        </LinearLayout>
 
 
         <LinearLayout
@@ -67,6 +38,7 @@
             android:orientation="horizontal"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp">
 
             <TextView
