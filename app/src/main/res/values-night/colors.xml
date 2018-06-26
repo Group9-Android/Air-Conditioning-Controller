@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff333333</color>
+    <color name="colorPrimaryDark">#ff222222</color>
+
+    <color name="colorAccent">#ff222222</color>
+    <color name="gainsboro">#ff222222</color><!--淡灰色 -->
+    <color name="red">#be1a1a</color>
+
+    <color name="orange">#FFC107</color>
+    <color name="green">#259B24</color>
+    <color name="purple">#191970</color>
+    <color name="blue">#ff222222</color>
+    <color name="white">#FFFFFF</color>
+    <color name="lime">#CDDC39</color>
+
+    <!-- QRCode scanner color begin -->
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#B0000000</color>
+    <color name="viewfinder_frame">#90FFFFFF</color>
+    <color name="result_point_color">#C0FFFF00</color>
+    <color name="laser_color">#0F0</color>
+    <color name="corner_color">#00FF00</color>
+    <!-- QRCode scanner color end -->
+</resources>

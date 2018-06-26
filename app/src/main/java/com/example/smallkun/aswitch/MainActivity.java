@@ -14,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.TextPaint;
 import android.util.Log;
 import android.view.Menu;
@@ -45,11 +46,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
     private TextView textView;
     private TextView username;//隐藏菜单内菜单头显示信息1
     private TextView mail;//隐藏菜单内菜单头显示信息2
-
-
-
-
-
+    private static boolean enableNightMode = false;
 
 
     @Override
@@ -148,6 +145,15 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                             mail.setText("尚未登录");
                             Toast.makeText(MainActivity.this, "已退出",Toast.LENGTH_LONG).show();
                         }
+                        break;
+                    case R.id.day:
+                        modeDay(getWindow().getDecorView());
+                        Toast.makeText(MainActivity.this, "已开启日间模式",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.night:
+                        modeNight(getWindow().getDecorView());
+                        Toast.makeText(MainActivity.this, "已开启夜间模式",Toast.LENGTH_SHORT).show();
+                        break;
 
                 }
                 return true;
@@ -186,7 +192,38 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                 .initialise();
         mBottomNavigationBar.setTabSelectedListener(MainActivity.this);
         setDefaultFragment();
+
+        if(!enableNightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+
+
     }
+
+    public void modeDay(View v) {
+        setEnableNightMode(false);
+    }
+
+    public void modeNight(View v) {
+        setEnableNightMode(true);
+    }
+
+
+
+    public void setEnableNightMode(boolean enableNightMode) {
+        this.enableNightMode = enableNightMode;
+        if(enableNightMode) {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+        recreate();
+    }
+
+
+
 
 
 

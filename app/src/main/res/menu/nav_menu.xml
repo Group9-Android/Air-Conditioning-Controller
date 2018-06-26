@@ -4,16 +4,26 @@
         <item
             android:id="@+id/account"
             android:title="账户"
-            android:icon="@drawable/account"
-            ></item>
+            android:icon="@drawable/account">
+        </item>
+
+        <item
+            android:id="@+id/day"
+            android:title="日间模式"
+            android:icon="@drawable/ic_day">
+        </item>
+
+        <item
+            android:id="@+id/night"
+            android:title="夜间模式"
+            android:icon="@drawable/ic_night">
+        </item>
+
         <item
             android:id="@+id/exit"
             android:title="退出"
-            android:icon="@drawable/ic_exit"
-            ></item>
-
-
-
+            android:icon="@drawable/ic_exit">
+        </item>
 
     </group>
 

@@ -23,7 +23,6 @@
         </activity>
 
         <activity android:name="com.example.smallkun.aswitch.Main_weather"></activity>
-
         <activity android:name="com.example.smallkun.aswitch.WeatherActivity"></activity>
         <activity android:name=".Main2Activity"></activity>
         <activity android:name=".Profile_m"></activity>

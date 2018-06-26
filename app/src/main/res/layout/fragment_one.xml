@@ -29,9 +29,9 @@
                     android:id="@+id/progress_bar"
                     android:layout_width="0dp"
                     android:layout_height="248dp"
-                    android:layout_weight="6"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
-                    android:layout_gravity="center" />
+                    android:layout_weight="6" />
 
                 <ImageButton
                     android:id="@+id/buttonclose"
@@ -40,8 +40,8 @@
                     android:layout_marginTop="25dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_shape"
-                    android:src="@drawable/ic_close"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:src="@drawable/ic_close" />
 
             </LinearLayout>
 
