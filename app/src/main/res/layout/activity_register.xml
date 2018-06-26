@@ -90,7 +90,8 @@
                 android:id="@+id/r_apw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password" />
+                android:hint="Password"
+                android:inputType="textPassword"/>
         </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
     </LinearLayout>
@@ -120,7 +121,8 @@
                 android:id="@+id/confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirm" />
+                android:hint="Confirm"
+                android:inputType="textPassword"/>
         </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
 
