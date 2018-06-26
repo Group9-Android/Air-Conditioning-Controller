@@ -108,7 +108,7 @@ public class Register extends AppCompatActivity {
             //
             URL url=null;
             try{
-                url = new URL("http://47.106.181.0:8080/air/Register?account="+ URLEncoder.encode(user_name, "utf-8")+"&password="+URLEncoder.encode(pass_word, "utf-8"));
+                url = new URL("http://47.106.181.0:8080/air/Register?account="+URLEncoder.encode(user_name, "utf-8")+"&password="+URLEncoder.encode(pass_word, "utf-8"));
             }catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -135,12 +135,12 @@ public class Register extends AppCompatActivity {
             super.handleMessage(msg);
             Bundle data = msg.getData();
             result = data.getString("response");
-            temp = result.split("=|,");
-            result = temp[1];
+            temp = result.split(",");
+            result = temp[0];
             ok = Integer.parseInt(result.trim());
             if (ok == 201){
                 lr.setText("该账号已注册，请重新输入");
-            } else {
+            } else if (ok == 100) {
                 Toast.makeText(Register.this, "注册成功",2).show();
                 finish();
             }

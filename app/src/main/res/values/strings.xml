@@ -4,4 +4,6 @@
     <string name="情景模式">情景模式</string>
     <string name="设备添加">设备添加</string>
     <string name="操作记录">操作记录</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
