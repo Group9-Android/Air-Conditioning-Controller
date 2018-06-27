@@ -34,8 +34,10 @@ public class Start extends Fragment {
 
     private Button button;
     private GradientProgressBar gradientProgressBar;
-
-
+    static public boolean onLogin =false;
+    static public String user_name;
+    static public boolean ond = false;
+    static public int lgstate = 100;
 
     @Nullable
     @Override
@@ -49,15 +51,39 @@ public class Start extends Fragment {
         TextPaint paint = button.getPaint();
         paint.setFakeBoldText(true);
 
+        if (getArguments()!=null) {
+            lgstate = getArguments().getInt("LGState");
+            onLogin = getArguments().getBoolean("ONLOGIN");
+            user_name= getArguments().getString("USERNAME");
+        }
 
         gradientProgressBar.setPercent(25);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                button.setEnabled(false);
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                OneFragment fragment = new OneFragment();
-                fragmentTransaction.replace(R.id.ll_content,fragment).commit();
+
+
+                if (getArguments()!=null) {
+                    lgstate = getArguments().getInt("LGState");
+                    onLogin = getArguments().getBoolean("ONLOGIN");
+                    user_name= getArguments().getString("USERNAME");
+                }
+
+                if (onLogin) {
+                    if (lgstate == 100) {
+                        Toast.makeText(getActivity(), user_name, Toast.LENGTH_SHORT).show();
+                        button.setEnabled(false);
+                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                        OneFragment fragment = new OneFragment();
+                        fragmentTransaction.replace(R.id.ll_content,fragment).commit();
+                    } else if (lgstate == 101) {
+                        Toast.makeText(getActivity(), "您尚未绑定空调，请绑定", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getActivity(),"您尚未登录，请登录", Toast.LENGTH_SHORT).show();
+                }
+
+
 
             }
         });

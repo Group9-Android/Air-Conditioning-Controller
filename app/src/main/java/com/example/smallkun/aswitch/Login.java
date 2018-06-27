@@ -115,7 +115,8 @@ public class Login extends AppCompatActivity {
             if (ok == 100){
                 lr.setText("");
                 Intent intent = new Intent();
-                intent.putExtra("b",user_name);
+                intent.putExtra("username",user_name);
+                intent.putExtra("rst",ok);
                 setResult(RESULT_OK,intent);
                 finish();
             } else if (ok == 101){
@@ -123,57 +124,21 @@ public class Login extends AppCompatActivity {
                 lr.setText("");
                 Toast.makeText(Login.this, "登录成功！请绑定空调", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
-                intent.putExtra("b",user_name);
+                intent.putExtra("username",user_name);
+                intent.putExtra("rst",ok);
                 setResult(RESULT_OK,intent);
                 finish();
             }  else if (ok == 201){
-                //lr.setText("帐户名或登录密码不正确，请重新输入");
                 lr.setText("帐户名或登录密码不正确，请重新输入");
-                //Toast.makeText(Login.this, temp[1], Toast.LENGTH_SHORT).show();
             }  else if (ok == 202){
-                //lr.setText("帐户名或登录密码不正确，请重新输入");
                 lr.setText("帐户名不存在，请注册或重新登录");
-                //Toast.makeText(Login.this, temp[1], Toast.LENGTH_SHORT).show();
             }
-
-
-
 
         }
     };
 
-//    Handler handler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            Bundle data = msg.getData();
-//            lr = (TextView)findViewById(R.id.login_result);
-//            String result = data.getString("response");
-//            String[] resultArray = result.split(",");//数据用,分割存在resultArray数组里面
-//            //这里写要对数据进行的操作
-//           if (resultArray[0]=="201") {
-//               lr.setText("帐户名或登录密码不正确，请重新输入");
-//           } else if (resultArray[0]=="101") {
-//                lr.setText("登录成功，请绑定设备");
-//                Intent intent = new Intent();
-//                intent.putExtra("b",user_name);
-//                setResult(RESULT_OK,intent);
-//                finish();
-//           } else if (resultArray[0]=="100") {
-//               lr.setText("登录成功 "+resultArray[1]);
-//               Intent intent = new Intent();
-//               intent.putExtra("b",user_name);
-//               setResult(RESULT_OK,intent);
-//               finish();
-//           } else if (resultArray[0]=="202") {
-//               lr.setText("登录失败");
-//           }
-//        }
-//    };
-
     
 
-    //新线程进行网络请求
     //新线程进行网络请求
     Runnable runnable = new Runnable() {
         @Override

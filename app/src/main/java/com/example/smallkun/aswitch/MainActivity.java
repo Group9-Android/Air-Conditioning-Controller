@@ -47,7 +47,11 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
     private TextView username;//隐藏菜单内菜单头显示信息1
     private TextView mail;//隐藏菜单内菜单头显示信息2
     private static boolean enableNightMode = false;
+    public String user_name;
+    public int okres=200;
+    public boolean onLogin=false;
 
+    Bundle bundle = new Bundle();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -77,16 +81,21 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
         switch (requestCode){
             case 1:
                 if(resultCode == RESULT_OK){
-                    String b = data.getStringExtra("b");
+                    String usern = data.getStringExtra("username");
+                    okres = data.getIntExtra("rst",101);
                     mail = (TextView)findViewById(R.id.mail);
                     username = (TextView)findViewById(R.id.username);
                     mail.setText("已登录");
-                    username.setText("用户名："+b);
+                    username.setText("用户名："+usern);
+                    onLogin = true;
+                    user_name = usern;
 
+                    bundle.putInt("LGState",okres);
+                    bundle.putBoolean("ONLOGIN",onLogin);
+                    bundle.putString("USERNAME",user_name);
+                    //这里的values就是我们要传的值
                     //mail.setText(mail_text);
                     //username.setText(username_text);
-
-
                 }
         }
     }
@@ -137,12 +146,16 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                         break;
                     case R.id.exit:
                         if (mail.getText().equals("尚未登录")){
+                            onLogin = false;
+                            bundle.putBoolean("ONLOGIN",onLogin);
                             Toast.makeText(MainActivity.this, "尚未登录",Toast.LENGTH_LONG).show();
 
 
                         } else {
                             username.setText("");
                             mail.setText("尚未登录");
+                            onLogin = false;
+                            bundle.putBoolean("ONLOGIN",onLogin);
                             Toast.makeText(MainActivity.this, "已退出",Toast.LENGTH_LONG).show();
                         }
                         break;
@@ -229,9 +242,26 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
 
     //设置活动切页默认打开页面，后续也要根据服务器返回数据来判断设备是否开启来选择不同碎片
     private void setDefaultFragment() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        mFragmentOne = new Start();
-        transaction.replace(R.id.ll_content, mFragmentOne).commit();
+
+        if (okres == 101){
+            Toast.makeText(MainActivity.this, "您尚未绑定空调！请绑定空调", Toast.LENGTH_LONG).show();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            mFragmentOne = new Start();
+            mFragmentOne.setArguments(bundle);
+            transaction.replace(R.id.ll_content, mFragmentOne).commit();
+        } else if (okres == 100){
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            mFragmentOne = new OneFragment();
+            mFragmentOne.setArguments(bundle);
+            transaction.replace(R.id.ll_content, mFragmentOne).commit();
+        } else if (okres == 200) {
+            Toast.makeText(MainActivity.this, "您尚未登录！请登录", Toast.LENGTH_LONG).show();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            mFragmentOne = new Start();
+            mFragmentOne.setArguments(bundle);
+            transaction.replace(R.id.ll_content, mFragmentOne).commit();
+        }
+
     }
 
     //滑动切页的点击事件
@@ -241,10 +271,27 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
         switch (position) {
             case 0:
                 //后续需要根据服务器返回数据判断设备是否开启来选择不同碎片
-                if (mFragmentOne == null) {
+//                if (mFragmentOne == null) {
+//                    mFragmentOne = new Start();
+//                };
+//                mFragmentOne.setArguments(bundle);
+//                transaction.replace(R.id.ll_content, mFragmentOne);
+                //mFragmentOne.setArguments(bundle);
+                if (okres == 101){
+                    Toast.makeText(MainActivity.this, "您尚未绑定空调！请绑定空调", Toast.LENGTH_LONG).show();
                     mFragmentOne = new Start();
-                };
-                transaction.replace(R.id.ll_content, mFragmentOne);
+                    mFragmentOne.setArguments(bundle);
+                    transaction.replace(R.id.ll_content, mFragmentOne);
+                } else if (okres == 100){
+                    mFragmentOne = new OneFragment();
+                    mFragmentOne.setArguments(bundle);
+                    transaction.replace(R.id.ll_content, mFragmentOne);
+                } else if (okres == 200) {
+                    Toast.makeText(MainActivity.this, "您尚未登录！请登录", Toast.LENGTH_LONG).show();
+                    mFragmentOne = new Start();
+                    mFragmentOne.setArguments(bundle);
+                    transaction.replace(R.id.ll_content, mFragmentOne);
+                }
                 break;
             case 1:
                 if (mFragmentTwo == null) {
@@ -278,5 +325,9 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
     @Override
     public void onTabReselected(int position) {
 
+    }
+
+    public String getusername(){
+        return this.user_name;
     }
 }

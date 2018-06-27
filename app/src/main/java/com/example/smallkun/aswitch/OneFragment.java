@@ -35,7 +35,9 @@ public class OneFragment extends Fragment {
 
     public int wd=25;
     public int fs=0;
-
+    public String user_name;
+    public int lgstate=200;
+    public boolean onLogin=false;
 
     @Nullable
     @Override
@@ -58,7 +60,11 @@ public class OneFragment extends Fragment {
 
         final GradientProgressBar gradientProgressBar = (GradientProgressBar)view.findViewById(R.id.progress_bar);
 
-
+        if (getArguments()!=null) {
+            onLogin = getArguments().getBoolean("ONLOGIN");
+            user_name= getArguments().getString("USERNAME");
+            lgstate = getArguments().getInt("LGState");
+        }
 
 
         gradientProgressBar.setPercent(25);
@@ -83,8 +89,6 @@ public class OneFragment extends Fragment {
                 wd = seekBar.getProgress()+20;
 
                 //confirmbtn.setEnabled(true);
-
-
             }
         });
 
@@ -131,8 +135,23 @@ public class OneFragment extends Fragment {
                 fengsu.setText(fs+"档");
                 moshi.setText(spinnermode.getSelectedItem().toString());
 
+                if (getArguments()!=null) {
+                    onLogin = getArguments().getBoolean("ONLOGIN");
+                    user_name= getArguments().getString("USERNAME");
+                    lgstate = getArguments().getInt("LGState");
+                }
+
+                if (onLogin) {
+                    if (lgstate == 100) {
+                        Toast.makeText(getActivity(), user_name, Toast.LENGTH_SHORT).show();
+                    } else if (lgstate == 101){
+                        Toast.makeText(getActivity(), "您尚未绑定空调，请绑定", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                        Toast.makeText(getActivity(),"您尚未登录，请登录", Toast.LENGTH_SHORT).show();
+                }
                 //调用接口！！
-                new Thread(runnable).start();
+                //new Thread(runnable).start();
 
                 //String text = wd +"℃ "+ fs + "档 "+ spinnermode.getSelectedItem().toString();
                 //Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
