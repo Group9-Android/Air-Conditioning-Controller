@@ -78,6 +78,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
             case 1:
                 if(resultCode == RESULT_OK){
@@ -93,6 +94,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                     bundle.putInt("LGState",okres);
                     bundle.putBoolean("ONLOGIN",onLogin);
                     bundle.putString("USERNAME",user_name);
+
                     //这里的values就是我们要传的值
                     //mail.setText(mail_text);
                     //username.setText(username_text);
@@ -149,7 +151,6 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                             onLogin = false;
                             bundle.putBoolean("ONLOGIN",onLogin);
                             Toast.makeText(MainActivity.this, "尚未登录",Toast.LENGTH_LONG).show();
-
 
                         } else {
                             username.setText("");
@@ -246,7 +247,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
         if (okres == 101){
             Toast.makeText(MainActivity.this, "您尚未绑定空调！请绑定空调", Toast.LENGTH_LONG).show();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            mFragmentOne = new Start();
+            mFragmentOne = new OneFragment();
             mFragmentOne.setArguments(bundle);
             transaction.replace(R.id.ll_content, mFragmentOne).commit();
         } else if (okres == 100){
@@ -279,7 +280,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                 //mFragmentOne.setArguments(bundle);
                 if (okres == 101){
                     Toast.makeText(MainActivity.this, "您尚未绑定空调！请绑定空调", Toast.LENGTH_LONG).show();
-                    mFragmentOne = new Start();
+                    mFragmentOne = new OneFragment();
                     mFragmentOne.setArguments(bundle);
                     transaction.replace(R.id.ll_content, mFragmentOne);
                 } else if (okres == 100){
@@ -300,9 +301,8 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                 transaction.replace(R.id.ll_content, mFragmentTwo);
                 break;
             case 2:
-                if (mFragmentThree == null) {
-                    mFragmentThree = new ThreeFragment();
-                }
+                mFragmentThree = new ThreeFragment();
+                mFragmentThree.setArguments(bundle);
                 transaction.replace(R.id.ll_content, mFragmentThree);
                 break;
             case 3:

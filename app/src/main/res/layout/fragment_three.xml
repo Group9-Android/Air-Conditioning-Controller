@@ -7,8 +7,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="选择添加方法"
+        android:id="@+id/currentstate"
+        android:text="当前状态："
         android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择添加设备方法"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:textSize="30sp"/>
 

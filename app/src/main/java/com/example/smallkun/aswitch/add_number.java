@@ -1,5 +1,6 @@
 package com.example.smallkun.aswitch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by vbn on 18/6/18.
@@ -18,6 +20,7 @@ public class add_number extends AppCompatActivity {
     private Button button;
     private EditText editText;
     private Toolbar number_toolbar;
+    public String text;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +44,15 @@ public class add_number extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editText.setText("good job");
+
+                text = editText.getText().toString();
+                //Toast.makeText(add_number.this,"wu", Toast.LENGTH_SHORT).show();
+
+                //将数据传给上一个activity
+                Intent intent = new Intent();
+                intent.putExtra("data_return", text);
+                setResult(RESULT_OK,intent);
+                finish();
             }
         });
     }

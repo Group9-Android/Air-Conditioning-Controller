@@ -29,8 +29,8 @@ public class Login extends AppCompatActivity {
     private String pass_word;
     public Toolbar login_toolbar;
     private String[] temp;//获取登录之后的信息
-    private String result;//返回登录是否成功结果
     private int ok;
+    private String result;//返回登录是否成功结果
     private TextView lr;//显示登录结果
 
     @Override

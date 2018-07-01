@@ -128,7 +128,7 @@ public class TwoFragment extends Fragment {
             case 1:
                 if (resultCode == RESULT_OK) {
                     String returnedData = data.getStringExtra("data_return");
-                    Toast.makeText(getActivity(), returnedData, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "123", Toast.LENGTH_SHORT).show();
                 } else {
                     if (resultCode == RESULT_CANCELED) {
                         String returnedData = data.getStringExtra("data_return");

@@ -60,6 +60,7 @@ public class OneFragment extends Fragment {
 
         final GradientProgressBar gradientProgressBar = (GradientProgressBar)view.findViewById(R.id.progress_bar);
 
+        //获取登录状态
         if (getArguments()!=null) {
             onLogin = getArguments().getBoolean("ONLOGIN");
             user_name= getArguments().getString("USERNAME");
@@ -165,11 +166,12 @@ public class OneFragment extends Fragment {
         closebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                Start fragment = new Start();
-                fragmentTransaction.replace(R.id.ll_content, fragment);
-                fragmentTransaction.commit();
+//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                Start fragment = new Start();
+//                fragmentTransaction.replace(R.id.ll_content, fragment);
+//                fragmentTransaction.commit();
 
+                Toast.makeText(getActivity(),user_name, Toast.LENGTH_SHORT).show();
 
             }
         });

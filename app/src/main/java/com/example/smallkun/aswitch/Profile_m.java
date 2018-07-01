@@ -120,7 +120,7 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
                     RadioButton b = Profile_m.this.findViewById(selected);
                     if (pd3) {
                         String text = time1+" "+ spinner1.getSelectedItem().toString() + "  " + spinner2.getSelectedItem().toString()+"  "+b.getText().toString();
-                        Toast.makeText(Profile_m.this, text, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Profile_m.this, text, Toast.LENGTH_SHORT).show();
 
                         //存储数据
                         int pos =spinner1.getSelectedItemPosition()+20;
@@ -137,7 +137,7 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
                         finish();
                     } else {
                         String text = time1+" "+"close";
-                        Toast.makeText(Profile_m.this, text, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Profile_m.this, text, Toast.LENGTH_SHORT).show();
 
                         //存储数据
                         int pos =spinner1.getSelectedItemPosition()+20;
