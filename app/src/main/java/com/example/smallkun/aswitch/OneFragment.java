@@ -35,9 +35,11 @@ public class OneFragment extends Fragment {
 
     public int wd=25;
     public int fs=0;
-    public String user_name;
+    public String user_name,pattern;
     public int lgstate=200;
     public boolean onLogin=false;
+    private String result;//返回登录是否成功结果
+    public int ok;
 
     @Nullable
     @Override
@@ -45,6 +47,7 @@ public class OneFragment extends Fragment {
 
         View view=inflater.inflate(R.layout.fragment_one,container,false);
 
+        final ImageButton refreshbtn = (ImageButton)view.findViewById(R.id.buttonrefresh);
         final ImageButton closebtn = (ImageButton)view.findViewById(R.id.buttonclose);
         final Spinner spinnermode = (Spinner)view.findViewById(R.id.spinnermode);
         final Button confirmbtn = (Button)view.findViewById(R.id.buttonconfirm);
@@ -120,21 +123,22 @@ public class OneFragment extends Fragment {
 
         //模式
         final List<String> dat =new ArrayList<>();
+        dat.add("自动");
+        dat.add("制热");
+        dat.add("抽湿");
         dat.add("制冷");
         dat.add("送风");
-        dat.add("抽湿");
+
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, dat);
         spinnermode.setAdapter(adapter2);
 
 
-        //设置确认按钮点击事件（温度获取问题？）
+        //设置确认按钮点击事件
         confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                gradientProgressBar.setPercent(wd);
-                fengsu.setText(fs+"档");
-                moshi.setText(spinnermode.getSelectedItem().toString());
+                pattern = Long.toString(spinnermode.getSelectedItemId());
 
                 if (getArguments()!=null) {
                     onLogin = getArguments().getBoolean("ONLOGIN");
@@ -144,15 +148,29 @@ public class OneFragment extends Fragment {
 
                 if (onLogin) {
                     if (lgstate == 100) {
-                        Toast.makeText(getActivity(), user_name, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), user_name, Toast.LENGTH_SHORT).show();
+                        //调用接口！！
+                        new Thread(runnable).start();
+
+                        if (ok == 100){
+                            Toast.makeText(getActivity(), "绑定成功！", Toast.LENGTH_SHORT).show();
+                            //显示设置
+                            gradientProgressBar.setPercent(wd);
+                            fengsu.setText(fs+"档");
+                            moshi.setText(spinnermode.getSelectedItem().toString());
+                        } else if (ok == 201){
+                            Toast.makeText(getActivity(), "设置失败，请稍后重试", Toast.LENGTH_SHORT).show();
+                        }  else if (ok == 202){
+                            Toast.makeText(getActivity(), "您尚未绑定空调，请绑定", Toast.LENGTH_SHORT).show();
+                        }
                     } else if (lgstate == 101){
                         Toast.makeText(getActivity(), "您尚未绑定空调，请绑定", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(),Long.toString(spinnermode.getSelectedItemId()), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                        Toast.makeText(getActivity(),"您尚未登录，请登录", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(getActivity(),"您尚未登录，请登录", Toast.LENGTH_SHORT).show();
                 }
-                //调用接口！！
-                //new Thread(runnable).start();
+
 
                 //String text = wd +"℃ "+ fs + "档 "+ spinnermode.getSelectedItem().toString();
                 //Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
@@ -193,14 +211,11 @@ public class OneFragment extends Fragment {
             //这里写要对数据进行的操作
 
             Toast.makeText(getActivity(), resultArray[0], Toast.LENGTH_SHORT).show();
-           /*TextView lr = (TextView)findViewById(R.id.login_result);
-           if(resultArray[0].equals("100")){
-               String res = "status: "+resultArray[1]+"\n"+"temperature: "+resultArray[2]+"\n"+"pattern: "+resultArray[3]+"\n"+"speed: "+resultArray[4];
-               lr.setText(res);
-           }else{
-               String res = resultArray[1];
-               lr.setText(res);
-           }*/
+            //提取返回数据中的内容
+            String[] temp = result.split(",");
+            result = temp[0];
+            ok = Integer.parseInt(result.trim());//trim方法用于去除当前 String 对象移除所有前导空白字符和尾部空白字符
+
 
         }
     };
@@ -214,7 +229,7 @@ public class OneFragment extends Fragment {
             //
             URL url=null;
             try{
-                url = new URL("http://47.106.181.0:8080/air/Login?account="+URLEncoder.encode("112", "utf-8")+"&password="+URLEncoder.encode("111", "utf-8"));
+                url = new URL("http://47.106.181.0:8080/air/SetAir?account="+URLEncoder.encode(user_name, "utf-8")+"&status="+URLEncoder.encode("1", "utf-8")+"&temperature="+URLEncoder.encode(Integer.toString(wd), "utf-8")+"&pattern="+URLEncoder.encode(pattern, "utf-8")+"&speed="+URLEncoder.encode(Integer.toString(fs), "utf-8"));
 
             }catch (Exception e) {
                 // TODO Auto-generated catch block
