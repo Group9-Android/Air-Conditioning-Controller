@@ -44,4 +44,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="扫描结果" />
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal"
+        android:text="绑定设备" />
 </LinearLayout>

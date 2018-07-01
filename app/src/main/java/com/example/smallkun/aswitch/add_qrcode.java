@@ -25,9 +25,10 @@ import com.google.zxing.activity.CaptureActivity;
  */
 
 public class add_qrcode extends AppCompatActivity {
-    private Button qrcode;
+    private Button qrcode,btnconfirm;
     private TextView result;
     private Toolbar qrcode_toolbar;
+    public String scanResult;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -44,6 +45,7 @@ public class add_qrcode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_qrcode);
         qrcode = (Button)findViewById(R.id.btn_qrcode);
+        btnconfirm = (Button)findViewById(R.id.btn_confirm);
         result = (TextView)findViewById(R.id.txt_result);
         qrcode_toolbar = (Toolbar) findViewById(R.id.qrcode_toolbar);
         qrcode_toolbar.setTitle("");
@@ -56,8 +58,16 @@ public class add_qrcode extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.mipmap.ic_back);
         }
 
-
-
+        btnconfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //将数据传给上一个activity
+                Intent intent = new Intent();
+                intent.putExtra("data_return", scanResult);
+                setResult(RESULT_OK,intent);
+                finish();
+            }
+        });
 
         qrcode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,10 +99,18 @@ public class add_qrcode extends AppCompatActivity {
         //扫描结果回调
         if (requestCode == Constant.REQ_QR_CODE && resultCode == RESULT_OK) {
             Bundle bundle = data.getExtras();
-            String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
+            scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
 
             //将扫描出的信息显示出来
-            result.setText(scanResult);
+            result.setText("已扫描到设备，点击绑定");
+            btnconfirm.setVisibility(View.VISIBLE);
+
+            //将数据传给上一个activity
+//            Intent intent = new Intent();
+//            intent.putExtra("data_return", scanResult);
+//            setResult(RESULT_OK,intent);
+//            finish();
+
         }
     }
     @Override

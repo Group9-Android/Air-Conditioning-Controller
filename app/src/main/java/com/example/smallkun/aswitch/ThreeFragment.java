@@ -68,8 +68,13 @@ public class ThreeFragment extends Fragment {
         qrcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(getActivity(), add_qrcode.class);
-                startActivityForResult(intent2,2);
+                if (onLogin) {
+                    Intent intent2 = new Intent(getActivity(), add_qrcode.class);
+                    startActivityForResult(intent2,2);
+                } else {
+                    Toast.makeText(getActivity(), "请先登录再进行绑定！", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -108,8 +113,9 @@ public class ThreeFragment extends Fragment {
                 break;
             case 2:
                 if (resultCode == RESULT_OK) {
-                    String returnedData = data.getStringExtra("data_return");
-                    Toast.makeText(getActivity(), returnedData, Toast.LENGTH_SHORT).show();
+                    device_id = data.getStringExtra("data_return");
+                    //接口
+                    new Thread(runnable).start();
                 } else {
                     if (resultCode == RESULT_CANCELED) {
                         String returnedData = data.getStringExtra("data_return");
