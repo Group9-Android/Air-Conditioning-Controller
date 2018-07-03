@@ -39,7 +39,9 @@ public class OneFragment extends Fragment {
     public int lgstate=200;
     public boolean onLogin=false;
     private String result;//返回登录是否成功结果
-    public int ok;
+    public int ok=100,ok1;
+    public int onpd=1;
+    public String[] ftemp;
 
     @Nullable
     @Override
@@ -149,15 +151,17 @@ public class OneFragment extends Fragment {
                 if (onLogin) {
                     if (lgstate == 100) {
                         //Toast.makeText(getActivity(), user_name, Toast.LENGTH_SHORT).show();
+                        onpd = 1;
                         //调用接口！！
                         new Thread(runnable).start();
 
                         if (ok == 100){
-                            Toast.makeText(getActivity(), "绑定成功！", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(), "绑定成功！", Toast.LENGTH_SHORT).show();
                             //显示设置
                             gradientProgressBar.setPercent(wd);
                             fengsu.setText(fs+"档");
                             moshi.setText(spinnermode.getSelectedItem().toString());
+                            Toast.makeText(getActivity(), "操作成功", Toast.LENGTH_SHORT).show();
                         } else if (ok == 201){
                             Toast.makeText(getActivity(), "设置失败，请稍后重试", Toast.LENGTH_SHORT).show();
                         }  else if (ok == 202){
@@ -177,20 +181,75 @@ public class OneFragment extends Fragment {
             }
         });
 
+        //设置刷新按钮点击事件
+        refreshbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                if (getArguments()!=null) {
+                    onLogin = getArguments().getBoolean("ONLOGIN");
+                    user_name= getArguments().getString("USERNAME");
+                    lgstate = getArguments().getInt("LGState");
+                }
+
+                new Thread(runnable1).start();
+
+                //Toast.makeText(getActivity(), Integer.toString(ok1), Toast.LENGTH_SHORT).show();
+
+                if (ok1==200) {
+                    Toast.makeText(getActivity(), "您尚未绑定空调！", Toast.LENGTH_SHORT).show();
+                } else if (ok1==100) {
+                    if (Integer.parseInt(ftemp[1].trim())==1){
+                        Toast.makeText(getActivity(), "刷新成功！", Toast.LENGTH_SHORT).show();
+                        gradientProgressBar.setPercent(Integer.parseInt(ftemp[2].trim()));
+                        fengsu.setText(ftemp[4].trim()+"档");
+                        switch (ftemp[3].trim()){
+                            case "0":
+                                moshi.setText("自动"); break;
+                            case "1":
+                                moshi.setText("制热"); break;
+                            case "2":
+                                moshi.setText("抽湿"); break;
+                            case "3":
+                                moshi.setText("制冷"); break;
+                            case "4":
+                                moshi.setText("送风"); break;
+                            default:
+                        }
+                    } else {
+                        Toast.makeText(getActivity(), "当前空调已关闭", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+            }
+        });
 
 
         //设置电源按钮点击事件
         closebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pattern = Long.toString(spinnermode.getSelectedItemId());
 //                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 //                Start fragment = new Start();
 //                fragmentTransaction.replace(R.id.ll_content, fragment);
 //                fragmentTransaction.commit();
+                onpd = 0;
+                //调用接口！！
 
-                Toast.makeText(getActivity(),user_name, Toast.LENGTH_SHORT).show();
+                new Thread(runnable).start();
 
+                if (ok==100) {
+                    Toast.makeText(getActivity(), "设备已关闭", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (ok == 201){
+                        Toast.makeText(getActivity(), "您尚未绑定空调", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "操作失败", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
             }
         });
         return view;
@@ -210,11 +269,30 @@ public class OneFragment extends Fragment {
             String[] resultArray = result.split(",");//数据用,分割存在resultArray数组里面
             //这里写要对数据进行的操作
 
-            Toast.makeText(getActivity(), resultArray[0], Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), resultArray[0], Toast.LENGTH_SHORT).show();
             //提取返回数据中的内容
             String[] temp = result.split(",");
             result = temp[0];
             ok = Integer.parseInt(result.trim());//trim方法用于去除当前 String 对象移除所有前导空白字符和尾部空白字符
+
+
+        }
+    };
+
+    Handler handler1 = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle data = msg.getData();
+            String result = data.getString("response");
+            String[] resultArray = result.split(",");//数据用,分割存在resultArray数组里面
+            //这里写要对数据进行的操作
+
+            //Toast.makeText(getActivity(), result.trim(), Toast.LENGTH_SHORT).show();
+            //提取返回数据中的内容
+            ftemp = result.split(",");
+            result = ftemp[0];
+            ok1 = Integer.parseInt(result.trim());//trim方法用于去除当前 String 对象移除所有前导空白字符和尾部空白字符
 
 
         }
@@ -229,7 +307,7 @@ public class OneFragment extends Fragment {
             //
             URL url=null;
             try{
-                url = new URL("http://47.106.181.0:8080/air/SetAir?account="+URLEncoder.encode(user_name, "utf-8")+"&status="+URLEncoder.encode("1", "utf-8")+"&temperature="+URLEncoder.encode(Integer.toString(wd), "utf-8")+"&pattern="+URLEncoder.encode(pattern, "utf-8")+"&speed="+URLEncoder.encode(Integer.toString(fs), "utf-8"));
+                url = new URL("http://47.106.181.0:8080/air/SetAir?account="+URLEncoder.encode(user_name, "utf-8")+"&status="+URLEncoder.encode(Integer.toString(onpd), "utf-8")+"&temperature="+URLEncoder.encode(Integer.toString(wd), "utf-8")+"&pattern="+URLEncoder.encode(pattern, "utf-8")+"&speed="+URLEncoder.encode(Integer.toString(fs), "utf-8"));
 
             }catch (Exception e) {
                 // TODO Auto-generated catch block
@@ -247,6 +325,36 @@ public class OneFragment extends Fragment {
             //data.putString("value", "请求结果");
             msg.setData(data);
             handler.sendMessage(msg);
+        }
+    };
+
+    //新线程进行网络请求
+    Runnable runnable1 = new Runnable() {
+        @Override
+        public void run() {
+            //
+            // TODO: http request.
+            //
+            URL url=null;
+            try{
+                url = new URL("http://47.106.181.0:8080/air/CheckAir?account="+URLEncoder.encode(user_name, "utf-8"));
+
+            }catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            httpNet httpConnection=new httpNet(url);
+
+            String result=httpConnection.loginOfPost();
+
+            Message msg = new Message();
+            Bundle data = new Bundle();
+            data.putString("response",result);
+
+            //data.putString("value", "请求结果");
+            msg.setData(data);
+            handler1.sendMessage(msg);
         }
     };
 }

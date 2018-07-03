@@ -71,11 +71,11 @@ public class Start extends Fragment {
 
                 if (onLogin) {
                     if (lgstate == 100) {
-                        Toast.makeText(getActivity(), user_name, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "登陆成功，请切页刷新~", Toast.LENGTH_SHORT).show();
                         button.setEnabled(false);
-                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                        OneFragment fragment = new OneFragment();
-                        fragmentTransaction.replace(R.id.ll_content,fragment).commit();
+//                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                        OneFragment fragment = new OneFragment();
+//                        fragmentTransaction.replace(R.id.ll_content,fragment).commit();
                     } else if (lgstate == 101) {
                         Toast.makeText(getActivity(), "您尚未绑定空调，请绑定", Toast.LENGTH_SHORT).show();
                     }
