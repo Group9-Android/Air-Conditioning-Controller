@@ -175,6 +175,30 @@
                 >
 
                 <RadioButton
+                    android:id="@+id/radioButtonzidong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:text="自动" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonzhire"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:text="制热" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonchoushi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:text="抽湿" />
+
+                <RadioButton
                     android:id="@+id/radioButtonzhileng"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -191,13 +215,6 @@
                     android:layout_marginLeft="8dp"
                     android:text="送风" />
 
-                <RadioButton
-                    android:id="@+id/radioButtonchoushi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="8dp"
-                    android:text="抽湿" />
             </RadioGroup>
         </LinearLayout>
 
