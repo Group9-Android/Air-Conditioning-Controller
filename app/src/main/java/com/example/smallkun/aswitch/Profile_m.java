@@ -40,7 +40,7 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
     private Spinner spinner1,spinner2;
     private RadioGroup mode, power;
     private boolean pd1 = true, pd2=false, pd3 =true;
-    private String date1,time1;
+    private String date1, time1, time2;
 
 
 
@@ -110,7 +110,8 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
         pd2 = pref.getBoolean("pdTime",false);
         if (pd2) {
             time1 = pref.getString("Time","");
-            tvTime.setText(time1);}
+            time2 = pref.getString("Min","");
+            tvTime.setText(time1+":"+time2);}
 
         confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,16 +124,34 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
                         //Toast.makeText(Profile_m.this, text, Toast.LENGTH_SHORT).show();
 
                         //存储数据
-                        int pos =spinner1.getSelectedItemPosition()+20;
+                        int pos = spinner1.getSelectedItemPosition()+20;
                         int pos1 = spinner2.getSelectedItemPosition();
                         int pos2 = mode.getCheckedRadioButtonId();
                         int pos3 = power.getCheckedRadioButtonId();
-                        saveData(time1,pos,pos1,pos2,pos3);
+                        saveData(time1,time2,pos,pos1,pos2,pos3);
 
+                        //模式数据返回
+                        switch (b.getText().toString()) {
+                            case "自动": pos2 = 0;
+                                break;
+                            case "制热": pos2 = 1;
+                                break;
+                            case "抽湿": pos2 = 2;
+                                break;
+                            case "制冷": pos2 = 3;
+                                break;
+                            case "送风": pos2 = 4;
+                                break;
+                        }
 
                         //将数据传给上一个activity
                         Intent intent = new Intent();
-                        intent.putExtra("data_return", text);
+                        intent.putExtra("WD", pos+"");
+                        intent.putExtra("OP", "1");
+                        intent.putExtra("FS", pos1+"");
+                        intent.putExtra("MS", pos2+"");
+                        intent.putExtra("Time", time1+"");
+                        intent.putExtra("Min", time2+"");
                         setResult(RESULT_OK,intent);
                         finish();
                     } else {
@@ -144,11 +163,29 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
                         int pos1 = spinner2.getSelectedItemPosition();
                         int pos2 = mode.getCheckedRadioButtonId();
                         int pos3 = power.getCheckedRadioButtonId();
-                        saveData(time1,pos,pos1,pos2,pos3);
+                        saveData(time1,time2,pos,pos1,pos2,pos3);
+
+                        switch (b.getText().toString()) {
+                            case "自动": pos2 = 0;
+                                break;
+                            case "制热": pos2 = 1;
+                                break;
+                            case "抽湿": pos2 = 2;
+                                break;
+                            case "制冷": pos2 = 3;
+                                break;
+                            case "送风": pos2 = 4;
+                                break;
+                        }
 
                         //将数据传给上一个activity
                         Intent intent = new Intent();
-                        intent.putExtra("data_return", text);
+                        intent.putExtra("WD", pos+"");
+                        intent.putExtra("OP", "0");
+                        intent.putExtra("FS", pos1+"");
+                        intent.putExtra("MS", pos2+"");
+                        intent.putExtra("Time", time1+"");
+                        intent.putExtra("Min", time2+"");
                         setResult(RESULT_OK,intent);
                         finish();
                     }
@@ -184,9 +221,10 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
 //    }
 
 
-    public void saveData(String time1, int pos, int pos1, int pos2, int pos3){
+    public void saveData(String time1,String time2, int pos, int pos1, int pos2, int pos3){
         SharedPreferences.Editor editor =  getSharedPreferences("data1", MODE_PRIVATE).edit();
         editor.putString("Time",time1);
+        editor.putString("Min",time2);
         editor.putBoolean("pdTime",pd2);
         editor.putInt("WD",pos);
         editor.putInt("FS",pos1);
@@ -213,7 +251,8 @@ public class Profile_m extends AppCompatActivity implements OnClickListener{
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         tvTime.setText(hour+":"+minute);
-                        time1 = hour+":"+minute;
+                        time1 = hour+"";
+                        time2 = minute+"";
                         pd2= true;
                     }
                 }, 18, 25, true);

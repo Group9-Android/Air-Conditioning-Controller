@@ -295,9 +295,8 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                 }
                 break;
             case 1:
-                if (mFragmentTwo == null) {
-                    mFragmentTwo = new TwoFragment();
-                }
+                mFragmentTwo = new TwoFragment();
+                mFragmentTwo.setArguments(bundle);
                 transaction.replace(R.id.ll_content, mFragmentTwo);
                 break;
             case 2:
