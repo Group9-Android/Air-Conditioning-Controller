@@ -285,17 +285,17 @@ public class TwoFragment extends Fragment {
             Bundle data = msg.getData();
             result = data.getString("response");
 
-            Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
 
             //提取返回数据中的内容
             String[] temp = result.split(",");
             result = temp[0];
-//            ok = Integer.parseInt(result.trim());//trim方法用于去除当前 String 对象移除所有前导空白字符和尾部空白字符
-//            if (ok == 100){
-//                Toast.makeText(getActivity(), "操作成功！", Toast.LENGTH_SHORT).show();
-//            } else if (ok == 200){
-//                Toast.makeText(getActivity(), "操作失败", Toast.LENGTH_SHORT).show();
-//            }
+            ok = Integer.parseInt(result.trim());//trim方法用于去除当前 String 对象移除所有前导空白字符和尾部空白字符
+            if (ok == 100){
+                Toast.makeText(getActivity(), "操作成功！", Toast.LENGTH_SHORT).show();
+            } else if (ok == 200){
+                Toast.makeText(getActivity(), "操作失败", Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
@@ -310,7 +310,7 @@ public class TwoFragment extends Fragment {
             //
             URL url=null;
             try{
-                url = new URL("http://47.106.181.0:8080/air/scene?account="+URLEncoder.encode(user_name, "utf-8")+"&scene="+URLEncoder.encode(scene, "utf-8")+"&state="+URLEncoder.encode(state, "utf-8")+"&hour="+URLEncoder.encode(hour, "utf-8")+"&min="+URLEncoder.encode(min, "utf-8")+"&status="+URLEncoder.encode(status, "utf-8")+"&temperature="+URLEncoder.encode(wd, "utf-8")+"&pattern="+URLEncoder.encode(mode, "utf-8")+"&speed="+URLEncoder.encode(fs, "utf-8"));
+                url = new URL("http://47.106.181.0:8080/air/Scene?account="+URLEncoder.encode(user_name, "utf-8")+"&scene="+URLEncoder.encode(scene, "utf-8")+"&state="+URLEncoder.encode(state, "utf-8")+"&hour="+URLEncoder.encode(hour, "utf-8")+"&min="+URLEncoder.encode(min, "utf-8")+"&status="+URLEncoder.encode(status, "utf-8")+"&temperature="+URLEncoder.encode(wd, "utf-8")+"&pattern="+URLEncoder.encode(mode, "utf-8")+"&speed="+URLEncoder.encode(fs, "utf-8"));
 
             }catch (Exception e) {
                 // TODO Auto-generated catch block
