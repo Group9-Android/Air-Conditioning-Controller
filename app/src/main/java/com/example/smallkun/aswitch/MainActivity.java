@@ -305,9 +305,8 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                 transaction.replace(R.id.ll_content, mFragmentThree);
                 break;
             case 3:
-                if (mFragmentFour == null) {
-                    mFragmentFour = new FourFragment();
-                }
+                mFragmentFour = new FourFragment();
+                mFragmentFour.setArguments(bundle);
                 transaction.replace(R.id.ll_content, mFragmentFour);
                 break;
 
