@@ -106,7 +106,7 @@ public class ThreeFragment extends Fragment {
                     new Thread(runnable).start();
                 } else {
                     if (resultCode == RESULT_CANCELED) {
-                        String returnedData = data.getStringExtra("data_return");
+                        //String returnedData = data.getStringExtra("data_return");
                         Toast.makeText(getActivity(),"wu", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -118,7 +118,7 @@ public class ThreeFragment extends Fragment {
                     new Thread(runnable).start();
                 } else {
                     if (resultCode == RESULT_CANCELED) {
-                        String returnedData = data.getStringExtra("data_return");
+                        //String returnedData = data.getStringExtra("data_return");
                         Toast.makeText(getActivity(), "wu2", Toast.LENGTH_SHORT).show();
                     }
                 }

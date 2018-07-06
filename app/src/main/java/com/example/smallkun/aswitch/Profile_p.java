@@ -87,6 +87,7 @@ public class Profile_p extends Activity implements View.OnClickListener{
         pd2 = pref.getBoolean("pdTime",false);
         if (pd2) {
             time1 = pref.getString("Time","");
+            time2 = pref.getString("Min","");
             tvTime.setText(time1+":"+time2);}
 
         confirmbtn.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +186,7 @@ public class Profile_p extends Activity implements View.OnClickListener{
     }
 
     public void saveData(String time1, String time2, int pos, int pos1, int pos2, int pos3){
-        SharedPreferences.Editor editor =  getSharedPreferences("data", MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor =  getSharedPreferences("data3", MODE_PRIVATE).edit();
         editor.putString("Time",time1);
         editor.putString("Min",time2);
         editor.putBoolean("pdTime",pd2);
@@ -214,7 +215,7 @@ public class Profile_p extends Activity implements View.OnClickListener{
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         tvTime.setText(hour+":"+minute);
-                        time1 = hour+":"+minute;
+                        time1 = hour+"";
                         time2 = minute+"";
                         pd2= true;
                     }

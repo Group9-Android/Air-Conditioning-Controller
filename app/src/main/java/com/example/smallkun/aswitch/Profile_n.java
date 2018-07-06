@@ -86,6 +86,7 @@ public class Profile_n extends Activity implements View.OnClickListener {
         pd2 = pref.getBoolean("pdTime",false);
         if (pd2) {
             time1 = pref.getString("Time","");
+            time2 = pref.getString("Min","");
             tvTime.setText(time1+":"+time2);}
 
 

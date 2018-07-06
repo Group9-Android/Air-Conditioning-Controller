@@ -143,7 +143,7 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                             startActivityForResult(intent, 1);
 
                         } else {
-                            Toast.makeText(MainActivity.this, "已成功退出", Toast.LENGTH_LONG).show();
+                           // Toast.makeText(MainActivity.this, "已成功退出", Toast.LENGTH_LONG).show();
                         }
                         break;
                     case R.id.exit:
