@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -30,6 +32,10 @@ import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+
+import java.net.URL;
+import java.net.URLEncoder;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -47,8 +53,8 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
     private TextView username;//隐藏菜单内菜单头显示信息1
     private TextView mail;//隐藏菜单内菜单头显示信息2
     private static boolean enableNightMode = false;
-    public String user_name;
-    public int okres=200;
+    public String user_name,result;
+    public int okres=200,ok;
     public boolean onLogin=false;
 
     Bundle bundle = new Bundle();
@@ -277,7 +283,8 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
 //                };
 //                mFragmentOne.setArguments(bundle);
 //                transaction.replace(R.id.ll_content, mFragmentOne);
-                //mFragmentOne.setArguments(bundle);
+                //mFragmentOne.setArguments(bundle)
+                if(onLogin) { new Thread(runnable).start();}
                 if (okres == 101){
                     Toast.makeText(MainActivity.this, "您尚未绑定空调！请绑定空调", Toast.LENGTH_LONG).show();
                     mFragmentOne = new OneFragment();
@@ -295,16 +302,19 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
                 }
                 break;
             case 1:
+                if(onLogin) { new Thread(runnable).start();}
                 mFragmentTwo = new TwoFragment();
                 mFragmentTwo.setArguments(bundle);
                 transaction.replace(R.id.ll_content, mFragmentTwo);
                 break;
             case 2:
+                if(onLogin) { new Thread(runnable).start();}
                 mFragmentThree = new ThreeFragment();
                 mFragmentThree.setArguments(bundle);
                 transaction.replace(R.id.ll_content, mFragmentThree);
                 break;
             case 3:
+                if(onLogin) { new Thread(runnable).start();}
                 mFragmentFour = new FourFragment();
                 mFragmentFour.setArguments(bundle);
                 transaction.replace(R.id.ll_content, mFragmentFour);
@@ -325,7 +335,60 @@ public  class MainActivity extends AppCompatActivity implements BottomNavigation
 
     }
 
-    public String getusername(){
-        return this.user_name;
-    }
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle data = msg.getData();
+            result = data.getString("response");
+
+            //提取返回数据中的内容
+            String[] temp = result.split(",");
+            result = temp[0];
+            ok = Integer.parseInt(result.trim());//trim方法用于去除当前 String 对象移除所有前导空白字符和尾部空白字符
+            //Toast.makeText(MainActivity.this, ok+"" , Toast.LENGTH_LONG).show();
+            if (ok == 100){
+                okres=100;
+                bundle.putInt("LGState",okres);
+            } else{
+                if(ok==200){
+                    okres=101;
+                    bundle.putInt("LGState",okres);
+                }
+            }
+        }
+    };
+
+
+
+    //新线程进行网络请求
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            //
+            // TODO: http request.
+            //
+            URL url=null;
+            try{
+                url = new URL("http://47.106.181.0:8080/air/CheckAir?account="+URLEncoder.encode(user_name, "utf-8"));
+
+            }catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            httpNet httpConnection=new httpNet(url);
+
+            String result=httpConnection.loginOfPost();
+
+            Message msg = new Message();
+            Bundle data = new Bundle();
+            data.putString("response",result);
+
+            //data.putString("value", "请求结果");
+            msg.setData(data);
+            handler.sendMessage(msg);
+        }
+    };
+
 }

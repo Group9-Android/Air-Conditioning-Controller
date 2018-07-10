@@ -107,7 +107,7 @@ public class ThreeFragment extends Fragment {
                 } else {
                     if (resultCode == RESULT_CANCELED) {
                         //String returnedData = data.getStringExtra("data_return");
-                        Toast.makeText(getActivity(),"wu", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(),"wu", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
@@ -119,7 +119,7 @@ public class ThreeFragment extends Fragment {
                 } else {
                     if (resultCode == RESULT_CANCELED) {
                         //String returnedData = data.getStringExtra("data_return");
-                        Toast.makeText(getActivity(), "wu2", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "wu2", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;

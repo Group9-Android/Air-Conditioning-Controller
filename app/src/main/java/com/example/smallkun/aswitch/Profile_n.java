@@ -231,7 +231,7 @@ public class Profile_n extends Activity implements View.OnClickListener {
         //super.onBackPressed();
         Intent intent = new Intent();
         intent.putExtra("data_return", "返回");
-        setResult(RESULT_CANCELED,intent);
+        setResult(RESULT_FIRST_USER,intent);
         finish();
     }
 }

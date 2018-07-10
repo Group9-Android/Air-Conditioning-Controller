@@ -216,8 +216,31 @@ public class OneFragment extends Fragment {
                                 moshi.setText("送风"); break;
                             default:
                         }
+                        onpd = 1;
+                        confirmbtn.setEnabled(true);
+                        sbfengsu.setEnabled(true);
+                        sbwendu.setEnabled(true);
                     } else {
                         Toast.makeText(getActivity(), "当前空调已关闭", Toast.LENGTH_SHORT).show();
+                        gradientProgressBar.setPercent(Integer.parseInt(ftemp[2].trim()));
+                        fengsu.setText(ftemp[4].trim()+"档");
+                        switch (ftemp[3].trim()){
+                            case "0":
+                                moshi.setText("自动"); break;
+                            case "1":
+                                moshi.setText("制热"); break;
+                            case "2":
+                                moshi.setText("抽湿"); break;
+                            case "3":
+                                moshi.setText("制冷"); break;
+                            case "4":
+                                moshi.setText("送风"); break;
+                            default:
+                        }
+                        onpd = 0;
+                        confirmbtn.setEnabled(false);
+                        sbfengsu.setEnabled(false);
+                        sbwendu.setEnabled(false);
                     }
 
 
@@ -235,13 +258,23 @@ public class OneFragment extends Fragment {
 //                Start fragment = new Start();
 //                fragmentTransaction.replace(R.id.ll_content, fragment);
 //                fragmentTransaction.commit();
-                onpd = 0;
-                //调用接口！！
+                if (onpd==1) onpd = 0; else onpd = 1;
 
+                //调用接口！！
                 new Thread(runnable).start();
 
                 if (ok==100) {
-                    Toast.makeText(getActivity(), "设备已关闭", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "设备操作成功", Toast.LENGTH_SHORT).show();
+
+                    if (onpd==0) {
+                        confirmbtn.setEnabled(false);
+                        sbfengsu.setEnabled(false);
+                        sbwendu.setEnabled(false);
+                    } else {
+                        confirmbtn.setEnabled(true);
+                        sbfengsu.setEnabled(true);
+                        sbwendu.setEnabled(true);
+                    }
                 } else {
                     if (ok == 201){
                         Toast.makeText(getActivity(), "您尚未绑定空调", Toast.LENGTH_SHORT).show();
