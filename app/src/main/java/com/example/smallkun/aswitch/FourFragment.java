@@ -11,11 +11,14 @@ package com.example.smallkun.aswitch;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.Button;
+        import android.widget.ListView;
         import android.widget.TextView;
         import android.widget.Toast;
 
         import java.net.URL;
         import java.net.URLEncoder;
+        import java.util.ArrayList;
+        import java.util.List;
 
         import static android.content.Context.MODE_PRIVATE;
 
@@ -30,11 +33,15 @@ public class FourFragment extends Fragment {
     private TextView historytext;
     public String user_name;
     public int lgstate=200;
-    public boolean onLogin=false;
+    public boolean onLogin=false,pdhis= false;
     public String device_id;
     private String result;//返回登录是否成功结果
     public int ok;
     public String[] temp;
+    public ListView listview;
+
+
+    public List<historydt> history = new ArrayList<>();
 
     @Nullable
     @Override
@@ -43,6 +50,12 @@ public class FourFragment extends Fragment {
 
         btnget = (Button) view.findViewById(R.id.btnget);
         historytext = (TextView)view.findViewById(R.id.texthistory);
+        pdhis = false;
+
+        //初始化ListView适配器
+        final historyadapter adapter = new historyadapter(getActivity(),R.layout.historylayout,history);
+        listview = (ListView) view.findViewById(R.id.hisview);
+        listview.setAdapter(adapter);
 
         //获取登录状态
         if (getArguments()!=null) {
@@ -54,16 +67,20 @@ public class FourFragment extends Fragment {
         //初始化历史记录
             //historytext.setText(result);
         SharedPreferences pref = getActivity().getSharedPreferences("data5",MODE_PRIVATE);
-        historytext.setText(pref.getString("TXT",""));
+        //historytext.setText(pref.getString("TXT",""));
+        historytext.setText("");
 
         btnget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onLogin) {
                     if (lgstate == 100) {
+
                         //调用接口
                         new Thread(runnable).start();
 
+                        //列表重新显示
+                        listview.setAdapter(adapter);
 
                     } else {
                         Toast.makeText(getActivity(), "您尚未绑定空调，请绑定！", Toast.LENGTH_SHORT).show();
@@ -73,6 +90,9 @@ public class FourFragment extends Fragment {
                 }
             }
         });
+
+
+
 
         return view;
     }
@@ -98,13 +118,19 @@ public class FourFragment extends Fragment {
                 Toast.makeText(getActivity(), "操作成功，获取到"+temp.length+"条记录！", Toast.LENGTH_SHORT).show();
 
                 //显示数据
-                for (int i=1;i<temp.length;i++){
+                for (int i=1;i<temp.length;i+=2){
                     if (i%2==1){
-                        historytext.setText(historytext.getText()+temp[i]);
-                    } else {
-                        historytext.setText(historytext.getText()+temp[i]+"\n");
+                        if (pdhis == false) {
+                            historydt hist = new historydt(temp[i]+"  ",temp[i+1].trim());
+                            history.add(hist);
+                        }
+                        //historytext.setText(historytext.getText()+temp[i]);
+                        //historytext.setText(historytext.getText()+temp[i+1]+"\n");
                     }
                 }
+
+                pdhis=true;
+
                 //
                 SharedPreferences.Editor editor = getActivity().getSharedPreferences("data5", MODE_PRIVATE).edit();
                 editor.putString("TXT",historytext.getText().toString());
